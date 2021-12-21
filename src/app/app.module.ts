@@ -8,6 +8,7 @@ import { TicketComponent } from './layout/ticket/ticket.component';
 import { FloatingCartComponent } from './components/floating-cart/floating-cart.component';
 import { CateringComponent } from './layout/catering/catering.component';
 import { TopUpComponent } from './layout/top-up/top-up.component';
+import {httpInterceptorProviders} from "./interceptors";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { TopUpComponent } from './layout/top-up/top-up.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

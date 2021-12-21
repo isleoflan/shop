@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'https://api.shop.isleoflan.ch',
+  iolAppToken: '253051de-50b6-445f-8486-f60425dc5651',
 };
 
 /*
