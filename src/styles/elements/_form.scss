@@ -1,0 +1,108 @@
+@use "abstracts" as *;
+
+.form{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2em;
+  &-control{
+    display: grid;
+    grid-template-columns: 1fr;
+
+    &-action{
+      text-align: right;
+      text-decoration: none;
+      color: $color-primary-light;
+    }
+  }
+
+  &-actions {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    gap: 1em;
+  }
+
+  .city {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2em;
+
+    [type="number"] {
+      -moz-appearance: textfield;
+      appearance: none;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        margin: 0;
+        -webkit-appearance: none;
+      }
+    }
+  }
+
+  &-radio {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+  }
+
+  &-errors {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: $color-primary-accent;
+    grid-template-columns: 1fr;
+    gap: 0.5em;
+  }
+
+  &-error {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.radio-button {
+  display: flex;
+
+  input {
+    display: none;
+
+    &:checked {
+      + .radio-button-value {
+        color: $color-white;
+        border-color: $color-primary-light;
+        background-color: $color-primary-light;
+      }
+    }
+  }
+
+  &-value {
+    font-weight: $font-weight-bold;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    padding: 1.4rem;
+    cursor: pointer;
+    border: 2px solid $color-black;
+  }
+}
+
+input {
+  font-weight: 400;
+  line-height: 1;
+  width: 100%;
+
+  padding: 1rem 2.4rem;
+  cursor: pointer;
+  border: 2px solid $color-black;
+  border-radius: 0;
+  outline: none;
+
+  &.ng-dirty {
+    &.ng-invalid {
+      border-color: $color-primary-accent;
+    }
+  }
+}
