@@ -1,31 +1,65 @@
 @use "abstracts" as *;
 
-:host{
+:host {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+  padding: 96px 0;
 }
 
-.container{
+.container {
   display: flex;
   flex-direction: column;
 }
 
-.days{
+.days {
   width: 100%;
   display: grid;
-  gap: 3rem;
+  gap: 48px;
   grid-template-columns: repeat(4, 1fr);
 }
-.meals{
+
+.day{
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.day-title{
+  text-align: center;
+}
+
+.meals {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
-  gap: 24px;
+  gap: 72px;
 }
-.meal{
-  padding: 24px;
+
+.meal {
+  padding: 24px 36px;
+  color: white;
+  background: linear-gradient(45deg, $color-primary-dark 30%, $color-primary-light 100%);
+  aspect-ratio: 2 / 1;
   @include shadow;
   @include border-radius;
+  position: relative;
+
+  .price {
+    position: absolute;
+    padding: 0 36px;
+    height: 48px;
+    border-radius: 24px;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    bottom: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(100deg, $color-secondary-dark 40%, $color-primary-accent 100%);
+    @include shadow;
+  }
 }
