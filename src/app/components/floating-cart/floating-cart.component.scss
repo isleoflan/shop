@@ -1,0 +1,27 @@
+@use "abstracts" as *;
+
+:host{
+  position: fixed;
+  right: 48px;
+  bottom: 48px;
+}
+.price{
+  display: block;
+  padding-left: 6px;
+  font-weight: $font-weight-bold;
+}
+.floating-cart-button{
+  background: white;
+  padding: 12px;
+  border-radius: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+
+  @include shadow();
+}
+
+.icon{
+  padding: 6px;
+}
