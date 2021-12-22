@@ -6,5 +6,5 @@ import { Observable } from "rxjs";
 
 export abstract class AbstractAuthApiService {
 
-  public abstract getLoginRequest(loginRequestDto: LoginRequestDto): Observable<Payload<LoginRequestPayload>>;
+  public abstract postLoginRequest(loginRequestDto: LoginRequestDto): Observable<Payload<LoginRequestPayload>>;
 }

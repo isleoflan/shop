@@ -1,3 +1,4 @@
+import { AbstractShopApiService } from "@/api/abstract-shop-api.service";
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MerchandiseComponent implements OnInit {
 
-  constructor() {
+  constructor(
+    private shopApiService: AbstractShopApiService
+  ) {
   }
 
   ngOnInit(): void {
+    this.shopApiService.getMerchandise().subscribe((payload) => console.log(payload));
   }
 
 }

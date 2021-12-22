@@ -16,8 +16,8 @@ export class AuthApiService implements AbstractAuthApiService {
   ) {
   }
 
-  getLoginRequest(loginRequestDto: LoginRequestDto): Observable<Payload<LoginRequestPayload>> {
-    return this.http.get<Payload<LoginRequestPayload>>('https://api.sso.isleoflan.ch/auth/request').pipe(first());
+  postLoginRequest(loginRequestDto: LoginRequestDto): Observable<Payload<LoginRequestPayload>> {
+    return this.http.post<Payload<LoginRequestPayload>>('https://api.sso.isleoflan.ch/v1/auth/request', {params: {...loginRequestDto}}).pipe(first());
   }
 
 }
