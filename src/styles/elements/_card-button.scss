@@ -1,21 +1,21 @@
 @use "abstracts/index" as *;
 
 .card-button {
-  position: absolute;
-  padding: 0 36px;
-  height: 48px;
-  border-radius: 24px;
   font-size: 2rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  position: absolute;
   bottom: -24px;
   left: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  height: 48px;
+  padding: 0 36px;
+  cursor: pointer;
   transform: translateX(-50%);
   border: none;
+  border-radius: 24px;
   outline: none;
-  cursor: pointer;
 
   @include shadow;
 
