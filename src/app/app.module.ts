@@ -1,28 +1,34 @@
+import { AbstractShopApiService } from "@/api/abstract-shop-api.service";
+import { MockShopApiService } from "@/api/mock-shop-api.service";
+import { AppStoreModule } from "@/store/app-store.module";
+import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { AbstractAuthApiService } from "./api/abstract-auth-api.service";
+import { AuthApiService } from "./api/auth-api.service";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ShopHeaderComponent } from './layout/shop-header/shop-header.component';
-import { TicketComponent } from './layout/ticket/ticket.component';
-import { FloatingCartComponent } from './components/floating-cart/floating-cart.component';
-import { CateringComponent } from './layout/catering/catering.component';
-import { TopUpComponent } from './layout/top-up/top-up.component';
+import { httpInterceptorProviders } from "./interceptors";
+import { RedirectComponent } from './pages/redirect/redirect.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ShopHeaderComponent,
-    TicketComponent,
-    FloatingCartComponent,
-    CateringComponent,
-    TopUpComponent
+    RedirectComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    AppStoreModule
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders,
+    {provide: AbstractAuthApiService, useClass: AuthApiService},
+    {provide: AbstractShopApiService, useClass: MockShopApiService}
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

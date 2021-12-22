@@ -8,9 +8,9 @@ describe('FloatingCartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FloatingCartComponent ]
+      declarations: [FloatingCartComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

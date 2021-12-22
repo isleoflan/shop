@@ -1,0 +1,50 @@
+@use "abstracts/index" as *;
+@use "elements/card-button";
+
+:host {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  padding: 96px 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.days {
+  display: grid;
+  width: 100%;
+  gap: 48px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.day-title {
+  text-align: center;
+}
+
+.meals {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 72px;
+}
+
+.meal {
+  position: relative;
+  padding: 24px 36px;
+  color: white;
+  background: linear-gradient(45deg, $color-primary-dark 30%, $color-primary-light 100%);
+  @include shadow;
+  @include border-radius;
+  aspect-ratio: 2 / 1;
+
+}
