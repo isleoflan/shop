@@ -71,7 +71,7 @@ jobs:
           SOURCE: dist/shop/
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: "${{ secrets.SSO_BASE_PATH }}${{ secrets.DEPLOYMENTS_FOLDER }}/${{ steps.deployment-id.outputs.DEPLOYMENT_ID }}"
+          TARGET: "${{ secrets.BASE_PATH }}${{ secrets.DEPLOYMENTS_FOLDER }}/${{ steps.deployment-id.outputs.DEPLOYMENT_ID }}"
 
       # after the application is uploaded lint the new folder
       - name: update symlink
@@ -83,7 +83,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd ${{ secrets.BASE_PATH }}
-            rm "${{ secrets.SSO_BASE_PATH }}live"
+            rm "${{ secrets.BASE_PATH }}live"
             ln -s "${{ secrets.DEPLOYMENTS_FOLDER }}/${{ steps.deployment-id.outputs.DEPLOYMENT_ID }}" live
 
       # end the maintenance mode
