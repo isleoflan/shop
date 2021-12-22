@@ -1,0 +1,38 @@
+@use "abstracts/index" as *;
+@use "elements/card-button";
+
+:host {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 96px 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+
+}
+
+.merchandise {
+  display: grid;
+  gap: 72px 48px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.item {
+  position: relative;
+  padding: 24px 24px 48px 24px;
+
+  @include border-radius;
+  @include shadow;
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}

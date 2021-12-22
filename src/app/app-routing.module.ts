@@ -1,15 +1,22 @@
 import {InjectionToken, NgModule} from '@angular/core';
 import {ActivatedRouteSnapshot, RouterModule, Routes} from '@angular/router';
-import {RedirectComponent} from "./components/redirect/redirect.component";
+import {RedirectComponent} from "./pages/redirect/redirect.component";
 
 const externalUrlProvider = new InjectionToken('externalUrlRedirectResolver');
 
 const routes: Routes = [
-  {},
   {
-    path: '/redirect',
+    path: 'shop',
+    loadChildren: () => import('./pages/shop/shop.module').then(m => m.ShopModule)
+  },
+  {
+    path: 'redirect',
     component: RedirectComponent,
     canActivate: [externalUrlProvider]
+  },
+  {
+    path: '**',
+    redirectTo: 'shop'
   }
 ];
 

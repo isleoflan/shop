@@ -1,4 +1,5 @@
-@use "abstracts" as *;
+@use "abstracts/index" as *;
+@use "elements/card-button";
 
 :host {
   width: 100%;
@@ -46,20 +47,4 @@
   @include border-radius;
   position: relative;
 
-  .price {
-    position: absolute;
-    padding: 0 36px;
-    height: 48px;
-    border-radius: 24px;
-    font-size: 2rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    bottom: -24px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(100deg, $color-secondary-dark 40%, $color-primary-accent 100%);
-    @include shadow;
-  }
 }
