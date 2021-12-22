@@ -39,7 +39,7 @@ jobs:
         run: |
           composer init --stability="dev"
           composer require "stui/statuspage-io:v0.0.4"
-          echo -n "::set-output name=INCIDENT_ID::" && php vendor/bin/statuspage.php maintenance schedule --title "Updating the Shop to newest version" --description $'We\'re updating the IOL Ticket Shop to the next version, so we can provide you with new features (and possibly bugs).\r\nAs we\'re using atomic deployments, no interruption should be perceivable.\r\nWhen the update is done, this maintenance message will automatically be resolved.' --component "${{ secrets.STATUSPAGE_COMPONENT_ID }}" --start $(date --date='1 minute' --iso-8601=seconds) --end $(date --date='10 minutes' --iso-8601=seconds) --incident-status "in_progress" --api-key "${{ secrets.STATUSPAGE_API_KEY }}" --page-id "${{ secrets.STATUSPAGE_PAGE_ID }}"
+          echo -n "::set-output name=INCIDENT_ID::" && php vendor/bin/statuspage.php maintenance schedule --title "Updating the Shop to newest version" --description $'We\'re updating the Shop to the next version, so we can provide you with new features (and possibly bugs).\r\nAs we\'re using atomic deployments, no interruption should be perceivable.\r\nWhen the update is done, this maintenance message will automatically be resolved.' --component "${{ secrets.STATUSPAGE_COMPONENT_ID }}" --start $(date --date='1 minute' --iso-8601=seconds) --end $(date --date='10 minutes' --iso-8601=seconds) --incident-status "in_progress" --api-key "${{ secrets.STATUSPAGE_API_KEY }}" --page-id "${{ secrets.STATUSPAGE_PAGE_ID }}"
 
       # freshly install the node dependencies
       - name: Install dependencies
@@ -85,3 +85,11 @@ jobs:
             cd ${{ secrets.BASE_PATH }}
             rm "${{ secrets.SSO_BASE_PATH }}live"
             ln -s "${{ secrets.DEPLOYMENTS_FOLDER }}/${{ steps.deployment-id.outputs.DEPLOYMENT_ID }}" live
+
+      # end the maintenance mode
+      - name: end maintenance mode
+        if: always()
+        run: |
+          php vendor/bin/statuspage.php maintenance update --incident "${{ steps.statuspage.outputs.INCIDENT_ID }}" --description "The update has been completed. Thank you for your patience and sorry for the possible inconveniences. The Shop is now running again as intended" --incident-status "completed" --api-key "${{ secrets.STATUSPAGE_API_KEY }}" --page-id "${{ secrets.STATUSPAGE_PAGE_ID }}"
+
+
