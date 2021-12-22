@@ -1,14 +1,15 @@
 @use "abstracts" as *;
 
-.form{
+.form {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2em;
-  &-control{
+
+  &-control {
     display: grid;
     grid-template-columns: 1fr;
 
-    &-action{
+    &-action {
       text-align: right;
       text-decoration: none;
       color: $color-primary-light;

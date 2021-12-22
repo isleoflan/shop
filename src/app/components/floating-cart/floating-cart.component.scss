@@ -1,11 +1,12 @@
 @use "abstracts" as *;
 
-:host{
+:host {
   position: fixed;
   right: 48px;
   bottom: 48px;
 }
-.price{
+
+.price {
   display: block;
   //visibility: hidden;
   //opacity: 0;
@@ -15,7 +16,8 @@
   transition: all ease-in-out 0.15s;
   transition-delay: 0s;
 }
-.floating-cart-button{
+
+.floating-cart-button {
   padding: 12px;
 
   display: flex;
@@ -23,7 +25,7 @@
   align-items: center;
   gap: 12px;
 
-  &:after{
+  &:after {
     content: '';
     z-index: -1;
     position: absolute;
@@ -55,6 +57,6 @@
    */
 }
 
-.icon{
+.icon {
   padding: 6px;
 }

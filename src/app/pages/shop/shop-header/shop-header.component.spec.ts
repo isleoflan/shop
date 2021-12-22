@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {ShopHeaderComponent} from './shop-header.component';
+import { ShopHeaderComponent } from './shop-header.component';
 
 describe('ShopHeaderComponent', () => {
   let component: ShopHeaderComponent;
@@ -8,9 +8,9 @@ describe('ShopHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ShopHeaderComponent ]
+      declarations: [ShopHeaderComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

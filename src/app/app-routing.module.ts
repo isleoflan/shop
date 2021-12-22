@@ -1,6 +1,6 @@
-import {InjectionToken, NgModule} from '@angular/core';
-import {ActivatedRouteSnapshot, RouterModule, Routes} from '@angular/router';
-import {RedirectComponent} from "./pages/redirect/redirect.component";
+import { InjectionToken, NgModule } from '@angular/core';
+import { ActivatedRouteSnapshot, RouterModule, Routes } from '@angular/router';
+import { RedirectComponent } from "./pages/redirect/redirect.component";
 
 const externalUrlProvider = new InjectionToken('externalUrlRedirectResolver');
 
@@ -31,8 +31,9 @@ const routes: Routes = [
         if (externalUrl) {
           window.open(externalUrl, '_self');
         }
-      },
-    },
+      }
+    }
   ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

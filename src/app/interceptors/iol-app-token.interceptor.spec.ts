@@ -6,7 +6,7 @@ describe('IolAppTokenInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
       IolAppTokenInterceptor
-      ]
+    ]
   }));
 
   it('should be created', () => {

@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {TopUpComponent} from './top-up.component';
+import { TopUpComponent } from './top-up.component';
 
 describe('TopUpComponent', () => {
   let component: TopUpComponent;
@@ -8,9 +8,9 @@ describe('TopUpComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TopUpComponent ]
+      declarations: [TopUpComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

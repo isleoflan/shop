@@ -22,13 +22,13 @@
   grid-template-columns: repeat(4, 1fr);
 }
 
-.day{
+.day {
   display: flex;
   flex-direction: column;
   gap: 36px;
 }
 
-.day-title{
+.day-title {
   text-align: center;
 }
 

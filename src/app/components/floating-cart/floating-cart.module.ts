@@ -1,6 +1,6 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FloatingCartComponent} from "./floating-cart.component";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FloatingCartComponent } from "./floating-cart.component";
 
 
 @NgModule({

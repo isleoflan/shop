@@ -6,7 +6,7 @@ describe('BaererInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
       BaererInterceptor
-      ]
+    ]
   }));
 
   it('should be created', () => {

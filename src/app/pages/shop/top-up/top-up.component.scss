@@ -1,7 +1,7 @@
 @use "abstracts/index" as *;
 @use "elements/form";
 
-:host{
+:host {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -10,7 +10,7 @@
   background: linear-gradient(100deg, $color-secondary-dark 40%, $color-primary-accent 100%);
 }
 
-.container{
+.container {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -18,7 +18,7 @@
   justify-content: center;
 }
 
-.card{
+.card {
   width: 30%;
   background: white;
   padding: 48px;

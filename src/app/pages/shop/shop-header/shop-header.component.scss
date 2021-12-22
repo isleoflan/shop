@@ -1,6 +1,6 @@
 @use "abstracts/index" as *;
 
-:host{
+:host {
   display: flex;
 
   width: 100%;
@@ -23,11 +23,12 @@
     background: linear-gradient(45deg, $color-primary-dark 50%, $color-primary-light 100%);
   }
 }
-.container{
+
+.container {
   gap: 3em;
 }
 
-h1{
+h1 {
   width: 50%;
   margin: 0;
   align-self: center;
