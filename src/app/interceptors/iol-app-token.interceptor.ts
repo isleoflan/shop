@@ -7,7 +7,7 @@ import { environment } from "../../environments/environment";
 export class IolAppTokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    request = request.clone({headers: request.headers.set('iol-app-token', environment.iolAppToken)});
+    request = request.clone({headers: request.headers.set('IOL-APP-Token', environment.iolAppToken)});
     return next.handle(request);
   }
 }

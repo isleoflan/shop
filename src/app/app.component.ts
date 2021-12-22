@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private authApiService: AbstractAuthApiService
+    // private router: Router
   ) {
   }
 
@@ -23,10 +24,10 @@ export class AppComponent implements OnInit {
     } else {
       // request new SSO Login Session
       const loginRequestDto: LoginRequestDto = {
-        redirectURL: 'https://shop.isleoflan.ch'
+        redirectURL: 'https://shop.isleoflan.ch/'
       };
-      this.authApiService.postLoginRequest(loginRequestDto).subscribe((payload) => {
-        console.log(payload);
+      this.authApiService.postLoginRequest(loginRequestDto).subscribe(() => {
+        //   this.router.navigate(['/redirect', {externalUrl: payload.data.redirect}]);
       });
     }
   }
