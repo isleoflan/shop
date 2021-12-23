@@ -9,8 +9,7 @@ describe('FloatingCartComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [FloatingCartComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -9,8 +9,7 @@ describe('TicketComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [TicketComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {
