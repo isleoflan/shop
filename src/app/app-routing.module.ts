@@ -1,13 +1,23 @@
+import { IsAuthenticatedGuard } from '@/guards/is-authenticated.guard';
+import { KeyExchangeGuard } from '@/guards/key-exchange.guard';
 import { InjectionToken, NgModule } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterModule, Routes } from '@angular/router';
-import { RedirectComponent } from "./pages/redirect/redirect.component";
+import { RedirectComponent } from './pages/redirect/redirect.component';
 
 const externalUrlProvider = new InjectionToken('externalUrlRedirectResolver');
 
 const routes: Routes = [
   {
     path: 'shop',
-    loadChildren: () => import('./pages/shop/shop.module').then(m => m.ShopModule)
+    canLoad: [IsAuthenticatedGuard],
+    canActivateChild: [IsAuthenticatedGuard],
+    loadChildren: () =>
+      import('./pages/shop/shop.module').then((m) => m.ShopModule)
+  },
+  {
+    path: 'auth/:token',
+    canActivate: [KeyExchangeGuard],
+    children: []
   },
   {
     path: 'redirect',

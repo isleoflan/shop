@@ -9,8 +9,7 @@ describe('TopUpComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [TopUpComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {
