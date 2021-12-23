@@ -7,7 +7,7 @@ export const authFeatureKey = 'auth';
 export interface State {
   accessToken: string | null;
   refreshToken: string | null;
-  expiration: string | null;
+  expiration: Date | null;
 }
 
 export const initialState: State = {
