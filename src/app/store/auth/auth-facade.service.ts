@@ -1,8 +1,8 @@
 import { AbstractAuthApiService } from '@/api/abstract-auth-api.service';
 import { KeyExchangeDto } from '@/interfaces/dto/key-exchange-dto';
+import { KeyRenewDto } from '@/interfaces/dto/key-renew-dto';
 import { LoginRequestDto } from '@/interfaces/dto/login-request-dto';
 import { Payload } from '@/interfaces/payload';
-import { KeyExchangePayload } from '@/interfaces/payload/key-exchange-payload';
 import { LoginRequestPayload } from '@/interfaces/payload/login-request-payload';
 import { TokenCollection } from '@/interfaces/token-collection';
 import { AppState } from '@/store/app.state';
@@ -18,7 +18,6 @@ import { environment } from '../../../environments/environment';
 export class AuthFacadeService {
 
   authState$ = this.store.select(AuthStoreSelectors.selectAuthState);
-  accessToken$ = this.store.select(AuthStoreSelectors.selectAccessToken);
 
   constructor(
     private store: Store<AppState>,
@@ -38,11 +37,19 @@ export class AuthFacadeService {
     return this.authApiService.postLoginRequest(loginRequestDto);
   }
 
-  postKeyExchange(keyExchangeDto: KeyExchangeDto): Observable<Payload<KeyExchangePayload>> {
+  postKeyExchange(keyExchangeDto: KeyExchangeDto): Observable<Payload<TokenCollection>> {
     return this.authApiService.postKeyExchange(keyExchangeDto).pipe(
       tap((payload) => {
         this.setTokenCollection(payload.data);
       })
     );
+  }
+
+  postKeyRenew(keyRenewDto: KeyRenewDto): Observable<Payload<TokenCollection>> {
+    return this.authApiService.postKeyRenew(keyRenewDto);
+  }
+
+  initRenewOfAccessToken(tokenCollection: TokenCollection): void {
+    this.store.dispatch({ type: AuthStoreActions.initRenewalOfAccessToken.type, tokenCollection });
   }
 }

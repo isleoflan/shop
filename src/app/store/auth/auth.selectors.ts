@@ -4,7 +4,6 @@ import { MemoizedSelector, createFeatureSelector, createSelector } from '@ngrx/s
 
 const getAccessToken = (state: State): string | null => state.accessToken;
 
-
 export const selectAuthState: MemoizedSelector<AppState, State> = createFeatureSelector(authFeatureKey);
 
 export const selectAccessToken: MemoizedSelector<AppState, string | null> = createSelector(

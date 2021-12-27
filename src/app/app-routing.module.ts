@@ -9,10 +9,17 @@ const externalUrlProvider = new InjectionToken('externalUrlRedirectResolver');
 const routes: Routes = [
   {
     path: 'shop',
-    canLoad: [IsAuthenticatedGuard],
-    canActivateChild: [IsAuthenticatedGuard],
-    loadChildren: () =>
-      import('./pages/shop/shop.module').then((m) => m.ShopModule)
+    canLoad: [
+      IsAuthenticatedGuard
+    ],
+    canActivate: [
+      IsAuthenticatedGuard
+    ],
+    canActivateChild: [
+      IsAuthenticatedGuard
+    ],
+    loadChildren: () => import('./pages/shop/shop.module').then((m) => m.ShopModule),
+    runGuardsAndResolvers: 'always'
   },
   {
     path: 'auth/:token',

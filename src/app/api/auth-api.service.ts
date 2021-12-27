@@ -1,8 +1,9 @@
 import { KeyExchangeDto } from '@/interfaces/dto/key-exchange-dto';
+import { KeyRenewDto } from '@/interfaces/dto/key-renew-dto';
 import { LoginRequestDto } from '@/interfaces/dto/login-request-dto';
 import { Payload } from '@/interfaces/payload';
-import { KeyExchangePayload } from '@/interfaces/payload/key-exchange-payload';
 import { LoginRequestPayload } from '@/interfaces/payload/login-request-payload';
+import { TokenCollection } from '@/interfaces/token-collection';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { first, Observable } from 'rxjs';
@@ -25,10 +26,17 @@ export class AuthApiService implements AbstractAuthApiService {
     ).pipe(first());
   }
 
-  postKeyExchange(keyExchangeDto: KeyExchangeDto): Observable<Payload<KeyExchangePayload>> {
-    return this.http.post<Payload<KeyExchangePayload>>(
+  postKeyExchange(keyExchangeDto: KeyExchangeDto): Observable<Payload<TokenCollection>> {
+    return this.http.post<Payload<TokenCollection>>(
       this.ssoUrl + '/key/exchange',
       { ...keyExchangeDto }
+    );
+  }
+
+  postKeyRenew(keyRenewDto: KeyRenewDto): Observable<Payload<TokenCollection>> {
+    return this.http.post<Payload<TokenCollection>>(
+      this.ssoUrl + '/key/renew',
+      { ...keyRenewDto }
     );
   }
 }
