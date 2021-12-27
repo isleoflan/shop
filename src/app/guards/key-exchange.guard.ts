@@ -20,7 +20,7 @@ export class KeyExchangeGuard implements CanActivate {
       token: route.paramMap.get('token') || ''
     }).pipe(
       switchMap(() => of(this.router.createUrlTree(['/']))),
-      catchError(() => of(true))
+      catchError(() => of(false))
     );
   }
 

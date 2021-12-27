@@ -1,16 +1,14 @@
 import { AuthFacadeService } from '@/store/auth/auth-facade.service';
+import { State } from '@/store/auth/auth.reducer';
 import { Injectable } from '@angular/core';
-import { CanActivateChild, CanLoad, UrlTree, Router } from '@angular/router';
+import { CanActivateChild, CanLoad, UrlTree, Router, CanActivate } from '@angular/router';
 import { Observable, of, map, mergeAll } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class IsAuthenticatedGuard implements CanActivateChild, CanLoad {
-
-  private isAccessTokenSet$: Observable<boolean> = this.authFacadeService.authState$.pipe(
-    map((tokens) => Object.values(tokens).every((element) => element !== null))
-  );
+export class IsAuthenticatedGuard implements CanActivateChild, CanActivate, CanLoad {
+  private authState$: Observable<State> = this.authFacadeService.authState$;
 
   constructor(
     private authFacadeService: AuthFacadeService,
@@ -22,14 +20,22 @@ export class IsAuthenticatedGuard implements CanActivateChild, CanLoad {
     return this.isAccessTokenSet();
   }
 
+  canActivate(): Observable<boolean | UrlTree> {
+    return this.isAccessTokenSet();
+  }
+
+
   canLoad(): Observable<boolean | UrlTree> {
     return this.isAccessTokenSet();
   }
 
   private isAccessTokenSet(): Observable<boolean | UrlTree> {
-    return this.isAccessTokenSet$.pipe(
-      map((state) => {
-        if (state) {
+    return this.authState$.pipe(
+      map(({ accessToken, refreshToken, expiration, refreshStarted }) => {
+        if (accessToken !== null && refreshToken !== null && expiration !== null) {
+          if (!refreshStarted) {
+            this.authFacadeService.initRenewOfAccessToken({ accessToken, refreshToken, expiration });
+          }
           return of(true);
         } else {
           return this.authFacadeService.postLoginRequest().pipe(
