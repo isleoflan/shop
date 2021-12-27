@@ -55,7 +55,7 @@ export class AuthEffects {
         window.localStorage.setItem('iol-access-token', accessToken);
         window.localStorage.setItem('iol-expiration', expiration.toString());
 
-        return { type: renewAccessTokenSuccess.type, keyRenewPayload: payload.data };
+        return { type: renewAccessTokenSuccess.type, tokenCollection: payload.data };
       }),
       catchError((error: HttpErrorResponse) => {
         return of({ type: renewAccessTokenFailure.type, error });
