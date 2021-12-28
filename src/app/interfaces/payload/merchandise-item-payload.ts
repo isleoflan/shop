@@ -3,8 +3,8 @@ export interface MerchandiseItemPayload {
   images: string[];
   title: string;
   description: string;
-  price: string;
-  variants: MerchandiseVariant[];
+  price: number;
+  variants?: MerchandiseVariant[];
 }
 
 export interface MerchandiseVariant {
