@@ -2,6 +2,7 @@ import { AbstractShopApiService } from '@/api/abstract-shop-api.service';
 import { Payload } from '@/interfaces/payload';
 import { CateringPayload } from '@/interfaces/payload/catering-payload';
 import { MerchandiseItemPayload } from '@/interfaces/payload/merchandise-item-payload';
+import { TopUpPayload } from '@/interfaces/payload/top-up-payload';
 import { Injectable } from '@angular/core';
 import * as faker from 'faker';
 import { Observable, of } from 'rxjs';
@@ -33,8 +34,11 @@ export class MockShopApiService implements AbstractShopApiService {
     return of({ data });
   }
 
-  getTopUp(): Observable<Payload<null>> {
-    return of({ data: null });
+  getTopUpId(): Observable<Payload<TopUpPayload>> {
+    const data: TopUpPayload = {
+      topUpId: faker.datatype.uuid()
+    };
+    return of({ data });
   }
 
   getMerchandise(): Observable<Payload<MerchandiseItemPayload[]>> {
