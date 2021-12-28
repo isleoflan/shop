@@ -10,8 +10,27 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class MockShopApiService implements AbstractShopApiService {
-  getCatering(): Observable<Payload<CateringPayload | null>> {
-    return of({ data: null });
+  getCatering(): Observable<Payload<CateringPayload>> {
+
+    const data: CateringPayload = {
+      menus: Array(5).fill({}).map(() => {
+        return {
+          id: faker.datatype.uuid(),
+          date: faker.date.between(new Date('2022-04-08'), new Date('2022-04-10')),
+          title: faker.commerce.productName(),
+          description: faker.commerce.productDescription(),
+          price: 500
+        };
+      }),
+      specialDeal: {
+        id: faker.datatype.uuid(),
+        title: 'Special Deal',
+        description: faker.commerce.productDescription(),
+        price: 3000
+      }
+    };
+
+    return of({ data });
   }
 
   getTopUp(): Observable<Payload<null>> {
