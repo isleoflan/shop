@@ -2,13 +2,13 @@
   <h2 class="container-title">Select your menu</h2>
   <div *ngIf="(menusByDay$ | async) as days" class="days">
     <div *ngFor="let day of days" class="day">
-      <h3 class="day-title">{{ day[0].date | date:'cccc'}}</h3>
+      <h3 class="day-title">{{day[0].date | date:'cccc'}}</h3>
       <div class="meals">
         <div *ngFor="let menu of day" class="meal">
           <h4>{{menu.title}}</h4>
           <p>{{menu.description}}</p>
           <button class="card-button card-button--secondary">
-            Add for {{menu.price | currency}}
+            Add for {{menu.price | intCurrency}}
           </button>
         </div>
       </div>
@@ -21,7 +21,7 @@
           <h4>{{specialDeal.title}}</h4>
           <p>{{specialDeal.description}}</p>
           <button class="card-button card-button--secondary">
-            Add all for {{specialDeal.price | currency}}
+            Add all for {{specialDeal.price | intCurrency}}
           </button>
         </div>
       </div>
