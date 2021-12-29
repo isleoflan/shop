@@ -18,7 +18,7 @@ export class TopUpFacadeService extends FacadeService {
     tap(() => this.store.dispatch({ type: TopUpStoreActions.loadTopUp.type })),
     switchMap(() => this.shopApiService.getTopUpId().pipe(
       tap((payload) => this.store
-        .dispatch({ type: TopUpStoreActions.loadTopUpSuccess.type, topUpPayload: payload.data })),
+        .dispatch({ type: TopUpStoreActions.loadTopUpSuccess.type, payload: payload })),
       catchError((error: HttpErrorResponse) => {
         this.store.dispatch({ type: TopUpStoreActions.loadTopUpFailure.type, error });
         return of(EMPTY);

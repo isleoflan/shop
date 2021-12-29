@@ -1,3 +1,4 @@
+import { Payload } from '@/interfaces/payload';
 import { CateringPayload } from '@/interfaces/payload/catering-payload';
 import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
@@ -8,7 +9,7 @@ export const loadCatering = createAction(
 
 export const loadCateringSuccess = createAction(
   '[Catering] Load Catering Success',
-  props<{ cateringPayload: CateringPayload }>()
+  props<{ payload: Payload<CateringPayload> }>()
 );
 
 export const loadCateringFailure = createAction(

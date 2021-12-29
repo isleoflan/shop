@@ -47,10 +47,10 @@ export const reducer = createReducer(
       error: null
     };
   }),
-  on(loadCateringSuccess, (state: State, { cateringPayload }) => {
-    return cateringEntityAdapter.addMany(cateringPayload.menus, {
+  on(loadCateringSuccess, (state: State, { payload }) => {
+    return cateringEntityAdapter.addMany(payload.data.menus, {
       ...state,
-      specialDeal: cateringPayload.specialDeal,
+      specialDeal: payload.data.specialDeal,
 
       isLoading: false,
       hasLoaded: true,

@@ -1,11 +1,30 @@
 @use "abstracts/index" as *;
+@use "elements/button" as *;
 
 :host {
-  position: relative;
   align-self: center;
   width: calc(50% - 48px);
   @include drop-shadow;
 }
+
+.ticket-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.ticket {
+  position: relative;
+  width: 100%;
+}
+
+.background {
+  svg {
+    display: flex;
+  }
+}
+
 
 .foreground {
   position: absolute;
@@ -22,7 +41,7 @@
 }
 
 h2 {
-  font-size: 2.5vw;
+  font-size: 2.1vw;
   margin: 0;
 }
 
