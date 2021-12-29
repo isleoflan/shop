@@ -4,7 +4,7 @@ import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/s
 
 const getTopUpId = (state: State) => state.topUpUid;
 
-export const selectTopUpState: MemoizedSelector<AppState, State> = createFeatureSelector(topUpFeatureKey);
+export const selectTopUpState: MemoizedSelector<AppState, State> = createFeatureSelector<State>(topUpFeatureKey);
 
 export const selectTopUpId: MemoizedSelector<AppState, string | null> = createSelector(
   selectTopUpState,

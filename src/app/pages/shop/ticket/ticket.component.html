@@ -70,7 +70,8 @@
         </div>
       </div>
     </div>
-    <button class="button button--secondary">Add for {{ticket.price | intCurrency}}</button>
+    <button (click)="onAddTicket(ticket)" class="button button--secondary">Add
+      for {{ticket.price | intCurrency}}</button>
   </div>
 </ng-container>
 

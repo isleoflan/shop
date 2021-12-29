@@ -1,6 +1,9 @@
 <app-shop-header></app-shop-header>
-<app-catering></app-catering>
-<app-top-up></app-top-up>
-<app-merchandise></app-merchandise>
+
+<ng-container *ngIf="(hasTicket$ | async)">
+  <app-catering></app-catering>
+  <app-top-up></app-top-up>
+  <app-merchandise></app-merchandise>
+</ng-container>
 
 <app-floating-cart></app-floating-cart>

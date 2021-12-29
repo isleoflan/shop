@@ -15,6 +15,7 @@ export class MockShopApiService implements AbstractShopApiService {
   getTicket(): Observable<Payload<TicketItemPayload[]>> {
     const data: TicketItemPayload[] = [
       {
+        id: faker.datatype.uuid(),
         title: 'Isle of LAN - "Honored"',
         dateFrom: new Date('2022-04-08 17:00'),
         dateTo: new Date('2022-04-10 13:00'),
