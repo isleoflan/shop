@@ -30,10 +30,10 @@ export const reducer = createReducer(
       error: null
     };
   }),
-  on(loadTopUpSuccess, (state: State, { topUpPayload }) => {
+  on(loadTopUpSuccess, (state: State, { payload }) => {
     return {
       ...state,
-      topUpUid: topUpPayload.topUpId,
+      topUpUid: payload.data.topUpId,
       isLoading: false,
       hasLoaded: true,
       error: null

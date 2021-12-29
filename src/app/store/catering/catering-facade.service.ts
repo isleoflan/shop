@@ -19,7 +19,7 @@ export class CateringFacadeService extends FacadeService {
     tap(() => this.store.dispatch({ type: CateringStoreActions.loadCatering.type })),
     switchMap(() => this.shopApiService.getCatering().pipe(
       tap((payload) => this.store
-        .dispatch({ type: CateringStoreActions.loadCateringSuccess.type, cateringPayload: payload.data })),
+        .dispatch({ type: CateringStoreActions.loadCateringSuccess.type, payload: payload })),
       catchError((error: HttpErrorResponse) => {
         this.store.dispatch({ type: CateringStoreActions.loadCateringFailure.type, error });
         return of(EMPTY);

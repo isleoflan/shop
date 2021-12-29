@@ -1,3 +1,4 @@
+import { Payload } from '@/interfaces/payload';
 import { TopUpPayload } from '@/interfaces/payload/top-up-payload';
 import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
@@ -8,7 +9,7 @@ export const loadTopUp = createAction(
 
 export const loadTopUpSuccess = createAction(
   '[TopUp] Load TopUp Success',
-  props<{ topUpPayload: TopUpPayload }>()
+  props<{ payload: Payload<TopUpPayload> }>()
 );
 
 export const loadTopUpFailure = createAction(
