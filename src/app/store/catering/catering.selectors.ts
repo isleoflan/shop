@@ -8,6 +8,12 @@ const getSpecialDeal = (state: State) => state.specialDeal;
 export const selectCateringState: MemoizedSelector<AppState, State> = createFeatureSelector<State>(cateringFeatureKey);
 export const { selectAll } = cateringEntityAdapter.getSelectors(selectCateringState);
 
+export const selectMenuCount: MemoizedSelector<AppState, number> = createSelector(
+  selectCateringState,
+  selectAll,
+  (state, menus) => menus.length
+);
+
 export const selectSpecialDeal: MemoizedSelector<AppState, SpecialDeal | null> = createSelector(
   selectCateringState,
   getSpecialDeal

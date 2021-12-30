@@ -6,12 +6,15 @@
   align-items: center;
   flex-direction: row;
   justify-content: center;
+  width: auto;
   height: 48px;
   padding: 0 36px;
   cursor: pointer;
+  transition: all ease-in-out 0.15s;
   white-space: nowrap;
   border: none;
   border-radius: 24px;
+
   outline: none;
 
   &--primary {
@@ -27,6 +30,10 @@
   &[disabled] {
     cursor: no-drop;
     opacity: 0.5;
+  }
+
+  &--no-padding {
+    padding: 0;
   }
 }
 

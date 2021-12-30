@@ -70,8 +70,12 @@
         </div>
       </div>
     </div>
-    <button (click)="onAddTicket(ticket)" class="button button--secondary">Add
-      for {{ticket.price | intCurrency}}</button>
+    <div class="button button--secondary button--no-padding">
+      <span (click)="onScrollToCatering()" *ngIf="(hasTicket$ | async); else add" class="material-icons-outlined icon">expand_more</span>
+      <ng-template #add>
+        <span (click)="onAddTicket(ticket)" class="add">Add for {{ticket.price | intCurrency}}</span>
+      </ng-template>
+    </div>
   </div>
 </ng-container>
 
