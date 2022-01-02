@@ -17,6 +17,12 @@
   bottom: 48px;
 }
 
+app-summary {
+  position: fixed;
+  right: 48px;
+  bottom: 120px;
+}
+
 .price {
   font-weight: $font-weight-bold;
   display: block;

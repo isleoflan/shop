@@ -1,3 +1,4 @@
+import { CartMerchandise } from '@/interfaces/cart/cart-merchandise';
 import { CartTicket } from '@/interfaces/cart/cart-ticket';
 import { CartTopUp } from '@/interfaces/cart/cart-top-up';
 import { CateringMenu } from '@/interfaces/payload/catering-payload';
@@ -10,6 +11,7 @@ const getTicket = (state: State) => state.ticket;
 const getMenus = (state: State) => state.menus;
 const getMenuIds = (state: State) => state.menuIds;
 const getTopUp = (state: State) => state.topUp;
+const getMerchandise = (state: State) => state.merchandise;
 
 export const selectCartState: MemoizedSelector<AppState, State> = createFeatureSelector<State>(cartFeatureKey);
 
@@ -70,13 +72,25 @@ export const selectTopUpTotal: MemoizedSelector<AppState, number> = createSelect
   (state, topUp) => topUp ? topUp.amount : 0
 );
 
+export const selectMerchandise: MemoizedSelector<AppState, CartMerchandise[]> = createSelector(
+  selectCartState,
+  getMerchandise
+);
+
+export const selectMerchandiseTotal: MemoizedSelector<AppState, number> = createSelector(
+  selectCartState,
+  selectMerchandise,
+  (state, merchandise) => merchandise.reduce((acc, next) => acc += next.price * next.amount, 0)
+);
+
 
 export const selectTotal: MemoizedSelector<AppState, number> = createSelector(
   selectCartState,
   selectTicketPrice,
   selectMenuTotal,
   selectTopUpTotal,
-  (state, ticketTotal, menuTotal, topUp) => (
-    [ticketTotal, menuTotal, topUp].reduce((acc, price) => acc + price, 0)
+  selectMerchandiseTotal,
+  (state, ticketTotal, menuTotal, topUpTotal, merchandiseTotal) => (
+    [ticketTotal, menuTotal, topUpTotal, merchandiseTotal].reduce((acc, price) => acc + price, 0)
   )
 );

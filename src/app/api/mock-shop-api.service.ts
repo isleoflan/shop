@@ -66,7 +66,35 @@ export class MockShopApiService implements AbstractShopApiService {
           ],
           title: faker.commerce.productName(),
           description: faker.commerce.productDescription(),
-          price: 100
+          price: 2500,
+          variants: [
+            {
+              id: faker.datatype.uuid(),
+              title: 'Size',
+              options: [
+                {
+                  id: faker.datatype.uuid(),
+                  title: 'XS'
+                },
+                {
+                  id: faker.datatype.uuid(),
+                  title: 'S'
+                },
+                {
+                  id: faker.datatype.uuid(),
+                  title: 'M'
+                },
+                {
+                  id: faker.datatype.uuid(),
+                  title: 'L'
+                },
+                {
+                  id: faker.datatype.uuid(),
+                  title: 'XL'
+                }
+              ]
+            }
+          ]
         } as MerchandiseItemPayload;
       });
 

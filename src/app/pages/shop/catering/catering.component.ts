@@ -1,6 +1,7 @@
 import { CateringMenu } from '@/interfaces/payload/catering-payload';
 import { CartFacadeService } from '@/store/cart/cart-facade.service';
 import { CateringFacadeService } from '@/store/catering/catering-facade.service';
+import { ViewportScroller } from '@angular/common';
 import { Component } from '@angular/core';
 import { first } from 'rxjs';
 
@@ -19,7 +20,8 @@ export class CateringComponent {
 
   constructor(
     private cateringFacadeService: CateringFacadeService,
-    private cartFacadeService: CartFacadeService
+    private cartFacadeService: CartFacadeService,
+    private viewportScroller: ViewportScroller
   ) {
   }
 
@@ -35,7 +37,11 @@ export class CateringComponent {
     this.cateringFacadeService.allMenus$.pipe(
       first()
     ).subscribe(
-      (cateringMenus) => this.cartFacadeService.addAll(cateringMenus)
+      (cateringMenus) => this.cartFacadeService.addAllMenus(cateringMenus)
     );
+  }
+
+  onScrollToTopUp(): void {
+    this.viewportScroller.scrollToAnchor('top-up');
   }
 }

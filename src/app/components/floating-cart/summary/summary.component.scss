@@ -1,0 +1,43 @@
+@use "abstracts" as *;
+
+:host {
+  overflow-y: auto;
+  width: 350px;
+  max-height: 80vh;
+  padding: 12px 12px 12px 24px;
+  background-color: $color-white;
+  @include border-radius;
+  @include shadow;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: auto 72px 36px;
+  gap: 12px;
+
+  .title,
+  .price {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .sub-title {
+    font-size: 1.4rem;
+    color: $color-gray;
+  }
+
+  .price {
+    font-weight: $font-weight-bold;
+    text-align: right;
+  }
+
+  .delete {
+    display: flex;
+    cursor: pointer;
+
+    span {
+      padding: 12px 6px;
+    }
+  }
+
+}

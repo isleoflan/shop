@@ -1,3 +1,4 @@
+import { CartMerchandise } from '@/interfaces/cart/cart-merchandise';
 import { CartTopUp } from '@/interfaces/cart/cart-top-up';
 import { CateringMenu } from '@/interfaces/payload/catering-payload';
 import { TicketItemPayload } from '@/interfaces/payload/ticket-item-payload';
@@ -18,12 +19,26 @@ export const removeMenu = createAction(
   props<{ cateringMenu: CateringMenu }>()
 );
 
-export const addAll = createAction(
-  '[Cart] Add Special Deal',
+export const addAllMenus = createAction(
+  '[Cart] Add All Menus',
   props<{ cateringMenus: CateringMenu[] }>()
+);
+
+export const removeSpecialDeal = createAction(
+  '[Cart] Remove Special Deal'
 );
 
 export const setTopUp = createAction(
   '[Cart] Set Top Up',
   props<{ topUp: CartTopUp }>()
+);
+
+export const addMerchandise = createAction(
+  '[Cart] Add merchandise',
+  props<{ merchandise: CartMerchandise }>()
+);
+
+export const decreaseMerchandise = createAction(
+  '[Cart] Decrease Merchandise',
+  props<{ merchandiseId: string }>()
 );

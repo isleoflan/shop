@@ -1,5 +1,15 @@
+@use "abstracts" as *;
+@use "elements/button" as *;
+
 :host {
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+#checkout {
+  display: flex;
+  justify-content: center;
+  padding: 96px 0;
+  background: linear-gradient(45deg, $color-primary-dark 50%, $color-primary-light 100%);
 }
