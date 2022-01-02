@@ -33,6 +33,11 @@ export class CateringFacadeService extends FacadeService {
     this.store.select(CateringStoreSelectors.selectMenusByDay)
   );
 
+  allMenus$: Observable<CateringMenu[]> = this.muteFirst(
+    this.requireCatering$.pipe(startWith(null)),
+    this.store.select(CateringStoreSelectors.selectAll)
+  );
+
   specialDeal$: Observable<SpecialDeal | null> = this.muteFirst(
     this.requireCatering$.pipe(startWith(null)),
     this.store.select(CateringStoreSelectors.selectSpecialDeal)

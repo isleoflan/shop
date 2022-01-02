@@ -23,6 +23,7 @@
         "plugin:@typescript-eslint/recommended-requiring-type-checking"
       ],
       "rules": {
+        "@typescript-eslint/unbound-method": "off",
         "@angular-eslint/directive-selector": [
           "error",
           {

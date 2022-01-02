@@ -1,5 +1,5 @@
-<div class="floating-cart-button">
-  <div class="price">{{ 50 | currency }}</div>
+<div [ngClass]="{'has-total': (total$ | async)}" class="floating-cart-button">
+  <div *ngIf="(total$ | async) as total" class="price">{{ total | intCurrency }}</div>
   <div class="icon">
     <span class="material-icons-outlined">shopping_cart</span>
   </div>

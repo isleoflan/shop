@@ -1,5 +1,6 @@
 import { TicketComponent } from '@/pages/shop/ticket/ticket.component';
 import { PipesModule } from '@/pipes/pipes.module';
+import { CartStoreModule } from '@/store/cart/cart-store.module';
 import { TicketStoreModule } from '@/store/ticket/ticket-store.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -11,6 +12,7 @@ import { NgModule } from '@angular/core';
   ],
   imports: [
     CommonModule,
+    CartStoreModule,
     TicketStoreModule,
     PipesModule
   ],
