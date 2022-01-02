@@ -1,5 +1,6 @@
-@use "abstracts/index" as *;
+@use "abstracts" as *;
 @use "elements/form";
+@use "elements/button";
 
 :host {
   display: flex;
@@ -28,4 +29,8 @@
 
 input {
   text-align: right;
+}
+
+.button--scroll {
+  margin-top: 48px;
 }

@@ -1,13 +1,14 @@
 <app-shop-header></app-shop-header>
 
-<ng-container *ngIf="(hasTicket$ | async)">-->
-  <app-catering id="catering"></app-catering>
-  <app-top-up></app-top-up>
+<!-- <ng-container *ngIf="(hasTicket$ | async)"> -->
+<app-catering id="catering"></app-catering>
+<app-top-up id="top-up"></app-top-up>
+<app-merchandise id="merchandise"></app-merchandise>
 
-  <!--
-  <app-merchandise></app-merchandise>
-  -->
+<div id="checkout">
+  <button class="button button--secondary" routerLink="/shop/checkout">Checkout</button>
+</div>
 
-</ng-container>
+<!-- </ng-container> -->
 
 <app-floating-cart></app-floating-cart>

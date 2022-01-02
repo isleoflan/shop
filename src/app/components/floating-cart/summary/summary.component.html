@@ -1,0 +1,56 @@
+<div *ngIf="(ticket$ | async) as ticket" class="ticket">
+  <div class="item">
+    <div class="title">
+      {{ticket.title}}
+    </div>
+    <div class="price">{{ticket.price |intCurrency}}</div>
+    <!--
+    <div class="delete">
+      <span class="material-icons-outlined">delete</span>
+    </div>
+    -->
+  </div>
+</div>
+
+<div *ngIf="(menus$ | async) as menus" class="menus">
+  <ng-container *ngIf="(isSpecialDealEligible$ | async); else menuList">
+    <div *ngIf="(specialDeal$ | async) as specialDeal" class="item">
+      <div class="title">{{specialDeal.title}}</div>
+      <div class="price">{{specialDeal.price | intCurrency}}</div>
+      <div (click)="onRemoveSpecialDeal()" class="delete">
+        <span class="material-icons-outlined">delete</span>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #menuList>
+    <div *ngFor="let menu of menus" class="item">
+      <div class="title">{{menu.title}}</div>
+      <div class="price">{{menu.price | intCurrency}}</div>
+      <div (click)="onRemoveMenu(menu)" class="delete">
+        <span class="material-icons-outlined">delete</span>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+<ng-container *ngIf="(topUp$ | async) as topUp">
+  <div *ngIf="topUp.amount > 0" class="top-up">
+    <div class="item">
+      <div class="title">Top Up</div>
+      <div class="price">{{topUp.amount | intCurrency}}</div>
+    </div>
+  </div>
+</ng-container>
+
+<div *ngIf="(merchandise$ | async) as merchandise" class="merchandise">
+  <div *ngFor="let item of merchandise" class="item">
+    <div class="title">
+      {{item.amount}}x {{item.title}}
+      <div class="sub-title">{{getSubtitle(item)}}</div>
+    </div>
+    <div class="price">{{(item.amount * item.price) | intCurrency}}</div>
+    <div (click)="onDecreaseMerchandise(item.cartId!)" class="delete">
+      <span class="material-icons-outlined">delete</span>
+    </div>
+  </div>
+</div>

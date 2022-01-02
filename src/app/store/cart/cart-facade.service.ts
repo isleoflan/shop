@@ -1,3 +1,4 @@
+import { CartMerchandise } from '@/interfaces/cart/cart-merchandise';
 import { CartTopUp } from '@/interfaces/cart/cart-top-up';
 import { CateringMenu } from '@/interfaces/payload/catering-payload';
 import { TicketItemPayload } from '@/interfaces/payload/ticket-item-payload';
@@ -18,6 +19,11 @@ export class CartFacadeService {
 
   total$: Observable<number> = this.store.select(CartStoreSelectors.selectTotal);
 
+  ticket$ = this.store.select(CartStoreSelectors.selectTicket);
+  menus$ = this.store.select(CartStoreSelectors.selectMenus);
+  topUp$ = this.store.select(CartStoreSelectors.selectTopUp);
+  merchandise$ = this.store.select(CartStoreSelectors.selectMerchandise);
+
   constructor(
     private store: Store<AppState>
   ) {
@@ -35,11 +41,23 @@ export class CartFacadeService {
     this.store.dispatch({ type: CartStoreActions.removeMenu.type, cateringMenu });
   }
 
-  addAll(cateringMenus: CateringMenu[]): void {
-    this.store.dispatch({ type: CartStoreActions.addAll.type, cateringMenus });
+  addAllMenus(cateringMenus: CateringMenu[]): void {
+    this.store.dispatch({ type: CartStoreActions.addAllMenus.type, cateringMenus });
+  }
+
+  removeSpecialDeal(): void {
+    this.store.dispatch({ type: CartStoreActions.removeSpecialDeal.type });
   }
 
   setTopUp(topUp: CartTopUp): void {
     this.store.dispatch({ type: CartStoreActions.setTopUp.type, topUp });
+  }
+
+  addMerchandise(merchandise: CartMerchandise): void {
+    this.store.dispatch({ type: CartStoreActions.addMerchandise.type, merchandise });
+  }
+
+  decreaseMerchandise(merchandiseId: string): void {
+    this.store.dispatch({ type: CartStoreActions.decreaseMerchandise.type, merchandiseId });
   }
 }

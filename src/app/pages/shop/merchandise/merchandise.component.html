@@ -1,61 +1,30 @@
 <div class="container">
   <h2 class="container-title">Our delux merchandise</h2>
 
-  <section class="merchandise">
-    <article class="item">
-      <img alt="titel" src="https://picsum.photos/400/400.jpg">
-      <h3>Title</h3>
-      <button class="card-button card-button--primary">
-        Add for {{20 | currency}}
-      </button>
-    </article>
-    <article class="item">
-      <img alt="titel" src="https://picsum.photos/400/400.jpg">
-      <h3>Title</h3>
-      <button class="card-button card-button--primary">
-        Add for {{20 | currency}}
-      </button>
-    </article>
-    <article class="item">
-      <img alt="titel" src="https://picsum.photos/400/400.jpg">
-      <h3>Title</h3>
-      <button class="card-button card-button--primary">
-        Add for {{20 | currency}}
-      </button>
-    </article>
-    <article class="item">
-      <img alt="titel" src="https://picsum.photos/400/400.jpg">
-      <h3>Title</h3>
-      <button class="card-button card-button--primary">
-        Add for {{20 | currency}}
-      </button>
-    </article>
-    <article class="item">
-      <img alt="titel" src="https://picsum.photos/400/400.jpg">
-      <h3>Title</h3>
-      <button class="card-button card-button--primary">
-        Add for {{20 | currency}}
-      </button>
-    </article>
-    <article class="item">
-      <img alt="titel" src="https://picsum.photos/400/400.jpg">
-      <h3>Title</h3>
-      <button class="card-button card-button--primary">
-        Add for {{20 | currency}}
-      </button>
-    </article>
-    <article class="item">
-      <img alt="titel" src="https://picsum.photos/400/400.jpg">
-      <h3>Title</h3>
-      <button class="card-button card-button--primary">
-        Add for {{20 | currency}}
-      </button>
-    </article>
-    <article class="item">
-      <img alt="titel" src="https://picsum.photos/400/400.jpg">
-      <h3>Title</h3>
-      <button class="card-button card-button--primary">
-        Add for {{20 | currency}}
+  <section *ngIf="(merchandise$ |async) as merchandise" class="merchandise">
+    <article *ngFor="let item of merchandise" class="item">
+      <div class="images">
+        <img *ngFor="let image of item.images" [src]="image" alt="">
+      </div>
+      <h3>{{item.title}}</h3>
+      <p>{{item.description}}</p>
+      <div *ngIf="item.variants" class="variants">
+        <div *ngFor="let variant of item.variants" class="variant">
+          <div class="variant-title">{{variant.title}}</div>
+          <div class="options">
+            <div
+              (click)="setOption(item.id, variant.id, option.id)"
+              *ngFor="let option of variant.options"
+              [ngClass]="{'option--selected': selectedVariants[item.id][variant.id] === option.id}"
+              class="option"
+            >
+              {{option.title}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <button (click)="onAddToCart(item)" class="card-button card-button--primary">
+        Add for {{item.price | intCurrency}}
       </button>
     </article>
   </section>

@@ -1,6 +1,7 @@
 import { CartTopUp } from '@/interfaces/cart/cart-top-up';
 import { CartFacadeService } from '@/store/cart/cart-facade.service';
 import { TopUpFacadeService } from '@/store/top-up/top-up-facade.service';
+import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable, debounceTime, filter } from 'rxjs';
@@ -21,7 +22,8 @@ export class TopUpComponent implements OnInit {
 
   constructor(
     private topUpFacadeService: TopUpFacadeService,
-    private cartFacadeService: CartFacadeService
+    private cartFacadeService: CartFacadeService,
+    private viewportScroller: ViewportScroller
   ) {
   }
 
@@ -51,5 +53,9 @@ export class TopUpComponent implements OnInit {
     if (this.topUpForm.controls['amount'].value === null) {
       this.topUpForm.controls['amount'].setValue(0);
     }
+  }
+
+  onScrollToMerchandise(): void {
+    this.viewportScroller.scrollToAnchor('merchandise');
   }
 }
