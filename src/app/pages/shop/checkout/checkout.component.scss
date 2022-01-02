@@ -1,0 +1,25 @@
+@use "elements/card";
+@use "elements/form";
+
+:host {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.container {
+  margin-top: 96px;
+}
+
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+.user-information,
+.cart {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}

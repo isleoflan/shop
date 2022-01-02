@@ -1,1 +1,65 @@
-<p>checkout works!</p>
+<app-header></app-header>
+
+<div class="container">
+  <h1 class="h2 container-title">Checkout</h1>
+  <form>
+    <section class="main-content">
+      <div class="user-information">
+        <div class="billing-address card">
+          <h2 class="h3">Billing address</h2>
+
+          <div class="form-control form-control--group">
+            <div class="form-control">
+              <label for="forename">Forename</label>
+              <input id="forename" type="text">
+            </div>
+            <div class="form-control">
+              <label for="lastname">Lastname</label>
+              <input id="lastname" type="text">
+            </div>
+          </div>
+
+          <div class="dateOfBirth">
+            <label for="lastname">Date of birth</label>
+            <input id="dateOfBirth" type="text">
+          </div>
+          <div class="form-control">
+            <label for="mail">Mail</label>
+            <input id="mail" type="text">
+          </div>
+          <div class="form-control">
+            <label for="mobile">Mobile</label>
+            <input id="mobile" type="text">
+          </div>
+
+
+          <div class="form-control">
+            <label for="address">Street & nr</label>
+            <input id="address" type="text">
+          </div>
+          <div class="form-control form-control--group">
+            <div class="form-control">
+              <label for="zip">ZIP</label>
+              <input id="zip" type="number">
+            </div>
+            <div class="form-control">
+              <label for="city">City</label>
+              <input id="city" type="text">
+            </div>
+          </div>
+        </div>
+        <div class="payment-type card">
+          <h3>Payment</h3>
+        </div>
+      </div>
+      <div class="cart">
+        <div class="cart-summary card">
+          <h2 class="h3">Cart summary</h2>
+        </div>
+        <div class="cart-total card">
+          TOTAL
+        </div>
+      </div>
+    </section>
+  </form>
+</div>

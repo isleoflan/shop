@@ -1,6 +1,7 @@
 @use "abstracts" as *;
 @use "elements/form";
 @use "elements/button";
+@use "elements/card";
 
 :host {
   display: flex;
@@ -21,10 +22,6 @@
 
 .card {
   width: 30%;
-  padding: 48px;
-  background: white;
-  @include border-radius;
-  @include shadow;
 }
 
 input {
