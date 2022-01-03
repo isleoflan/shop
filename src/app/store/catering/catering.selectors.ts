@@ -27,9 +27,12 @@ export const selectMenusByDay: MemoizedSelector<AppState, CateringMenu[][]> = cr
     const entitiesSortedByDay: CateringMenu[][] = [];
 
     entities.forEach((menu) => {
-      const dateId = `${ menu.date.getFullYear() }
-      ${ menu.date.getMonth().toString().padStart(2, '0') }
-      ${ menu.date.getDay().toString().padStart(2, '0') }`;
+
+      const menuDate = new Date(menu.date);
+
+      const dateId = `${ menuDate.getFullYear() }
+      ${ menuDate.getMonth().toString().padStart(2, '0') }
+      ${ menuDate.getDay().toString().padStart(2, '0') }`;
 
       const indexOfDateId = entitiesDateMap.indexOf(dateId);
 
