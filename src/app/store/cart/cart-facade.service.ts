@@ -19,11 +19,15 @@ export class CartFacadeService {
   isSpecialDealEligible$: Observable<boolean> = this.store.select(CartStoreSelectors.selectIsSpecialDealEligible);
 
   total$: Observable<number> = this.store.select(CartStoreSelectors.selectTotal);
+  paymentFee$: Observable<number> = this.store.select(CartStoreSelectors.selectPaymentFee);
+  totalWithPaymentFee$: Observable<number> = this.store.select(CartStoreSelectors.selectTotalWithPaymentFee);
 
   ticket$ = this.store.select(CartStoreSelectors.selectTicket);
   menus$ = this.store.select(CartStoreSelectors.selectMenus);
   topUp$ = this.store.select(CartStoreSelectors.selectTopUp);
   merchandise$ = this.store.select(CartStoreSelectors.selectMerchandise);
+
+  paymentType$: Observable<PaymentType> = this.store.select(CartStoreSelectors.selectPaymentType);
 
   constructor(
     private store: Store<AppState>

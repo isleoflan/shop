@@ -2,7 +2,7 @@ import { PaymentType } from '@/enums/payment-type';
 import { CartFacadeService } from '@/store/cart/cart-facade.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil, first } from 'rxjs';
 
 @Component({
   selector: 'app-payment',
@@ -17,7 +17,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   CRYPTO = PaymentType.CRYPTO;
 
   paymentForm: FormGroup = new FormGroup({
-    paymentType: new FormControl(this.PREPAYMENT, [Validators.required])
+    paymentType: new FormControl('', [Validators.required])
   });
 
   private destroyed$: Subject<boolean> = new Subject<boolean>();
@@ -28,6 +28,13 @@ export class PaymentComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
+    this.cartFacadeService.paymentType$.pipe(
+      first()
+    ).subscribe((paymentType) => {
+      this.paymentForm.controls['paymentType'].setValue(paymentType);
+    });
+
     this.paymentForm.valueChanges.pipe(
       takeUntil(this.destroyed$)
     ).subscribe(({ paymentType }) => {

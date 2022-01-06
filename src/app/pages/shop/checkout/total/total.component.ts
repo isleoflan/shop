@@ -10,6 +10,8 @@ import { Observable } from 'rxjs';
 export class TotalComponent {
 
   total$: Observable<number> = this.cartFacadeService.total$;
+  paymentFee$: Observable<number> = this.cartFacadeService.paymentFee$;
+  totalWithPaymentFee$: Observable<number> = this.cartFacadeService.totalWithPaymentFee$;
 
   constructor(
     private cartFacadeService: CartFacadeService

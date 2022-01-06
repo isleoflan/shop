@@ -101,3 +101,35 @@ export const selectTotal: MemoizedSelector<AppState, number> = createSelector(
     [ticketTotal, menuTotal, topUpTotal, merchandiseTotal].reduce((acc, price) => acc + price, 0)
   )
 );
+
+export const selectPaymentFee: MemoizedSelector<AppState, number> = createSelector(
+  selectCartState,
+  selectPaymentType,
+  selectTotal,
+  (state, paymentType, total) => {
+    let paymentFee = 0;
+
+    switch (paymentType) {
+      case PaymentType.PREPAYMENT:
+      case PaymentType.CRYPTO:
+        break;
+      case PaymentType.PAYPAL:
+        paymentFee += total * 0.034;
+        paymentFee += 55;
+        break;
+      case PaymentType.STRIPE:
+        paymentFee += total * 0.029;
+        paymentFee += 30;
+        break;
+    }
+
+    return paymentFee;
+  }
+);
+
+export const selectTotalWithPaymentFee: MemoizedSelector<AppState, number> = createSelector(
+  selectCartState,
+  selectTotal,
+  selectPaymentFee,
+  (state, total, paymentFee) => (total + paymentFee)
+);
