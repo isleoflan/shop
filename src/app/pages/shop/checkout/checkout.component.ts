@@ -16,9 +16,7 @@ export class CheckoutComponent {
 
   onCheckout(): void {
     if (this.billingAddressForm.valid) {
-
       // do Checkout
-
 
     }
   }
