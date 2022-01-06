@@ -1,0 +1,19 @@
+<h2>Total</h2>
+<table *ngIf="(total$ |async) as total">
+  <tbody>
+    <tr>
+      <td>Subtotal:</td>
+      <td class="price">{{ total | intCurrency }}</td>
+    </tr>
+    <tr>
+      <td>Payment fee:</td>
+      <td class="price">{{ total | intCurrency }}</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>Total:</td>
+      <td class="price">{{ total | intCurrency }}</td>
+    </tr>
+  </tfoot>
+</table>

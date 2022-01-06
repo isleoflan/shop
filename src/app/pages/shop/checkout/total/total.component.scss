@@ -1,0 +1,22 @@
+@use "abstracts" as *;
+
+table {
+  width: 100%;
+
+  td {
+    padding: 6px 0;
+  }
+}
+
+.price {
+  font-weight: $font-weight-bold;
+  text-align: right;
+}
+
+tfoot {
+  tr {
+    td {
+      border-top: 1px solid $color-black;
+    }
+  }
+}

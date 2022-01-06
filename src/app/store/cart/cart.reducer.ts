@@ -1,3 +1,4 @@
+import { PaymentType } from '@/enums/payment-type';
 import { CartMerchandise } from '@/interfaces/cart/cart-merchandise';
 import { CartTicket } from '@/interfaces/cart/cart-ticket';
 import { CartTopUp } from '@/interfaces/cart/cart-top-up';
@@ -10,7 +11,8 @@ import {
   setTopUp,
   addMerchandise,
   removeSpecialDeal,
-  decreaseMerchandise
+  decreaseMerchandise,
+  setPaymentType
 } from '@/store/cart/cart.actions';
 import { createReducer, on } from '@ngrx/store';
 
@@ -24,7 +26,9 @@ export interface State {
   ticket: CartTicket | null,
   menus: CateringMenu[],
   topUp: CartTopUp | null,
-  merchandise: CartMerchandise[]
+  merchandise: CartMerchandise[],
+
+  paymentType: PaymentType,
 }
 
 export const initialState: State = {
@@ -34,7 +38,9 @@ export const initialState: State = {
   ticket: null,
   menus: [],
   topUp: null,
-  merchandise: []
+  merchandise: [],
+
+  paymentType: PaymentType.PREPAYMENT
 };
 
 export const reducer = createReducer(
@@ -178,5 +184,12 @@ export const reducer = createReducer(
       merchandise
     };
 
+  }),
+
+  on(setPaymentType, (state: State, { paymentType }) => {
+    return {
+      ...state,
+      paymentType
+    };
   })
 );

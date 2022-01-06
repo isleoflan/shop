@@ -1,3 +1,4 @@
+import { PaymentType } from '@/enums/payment-type';
 import { CartMerchandise } from '@/interfaces/cart/cart-merchandise';
 import { CartTopUp } from '@/interfaces/cart/cart-top-up';
 import { CateringMenu } from '@/interfaces/payload/catering-payload';
@@ -59,5 +60,9 @@ export class CartFacadeService {
 
   decreaseMerchandise(merchandiseId: string): void {
     this.store.dispatch({ type: CartStoreActions.decreaseMerchandise.type, merchandiseId });
+  }
+
+  setPaymentType(paymentType: PaymentType): void {
+    this.store.dispatch({ type: CartStoreActions.setPaymentType.type, paymentType });
   }
 }

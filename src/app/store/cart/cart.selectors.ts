@@ -1,3 +1,4 @@
+import { PaymentType } from '@/enums/payment-type';
 import { CartMerchandise } from '@/interfaces/cart/cart-merchandise';
 import { CartTicket } from '@/interfaces/cart/cart-ticket';
 import { CartTopUp } from '@/interfaces/cart/cart-top-up';
@@ -12,6 +13,8 @@ const getMenus = (state: State) => state.menus;
 const getMenuIds = (state: State) => state.menuIds;
 const getTopUp = (state: State) => state.topUp;
 const getMerchandise = (state: State) => state.merchandise;
+
+const getPaymentType = (state: State) => state.paymentType;
 
 export const selectCartState: MemoizedSelector<AppState, State> = createFeatureSelector<State>(cartFeatureKey);
 
@@ -80,9 +83,13 @@ export const selectMerchandise: MemoizedSelector<AppState, CartMerchandise[]> = 
 export const selectMerchandiseTotal: MemoizedSelector<AppState, number> = createSelector(
   selectCartState,
   selectMerchandise,
-  (state, merchandise) => merchandise.reduce((acc, next) => acc += next.price * next.amount, 0)
+  (state, merchandise) => merchandise.reduce((acc, next) => acc + (next.price * next.amount), 0)
 );
 
+export const selectPaymentType: MemoizedSelector<AppState, PaymentType> = createSelector(
+  selectCartState,
+  getPaymentType
+);
 
 export const selectTotal: MemoizedSelector<AppState, number> = createSelector(
   selectCartState,

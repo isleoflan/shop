@@ -4,15 +4,21 @@ import { PipesModule } from '@/pipes/pipes.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BillingAddressComponent } from './billing-address/billing-address.component';
 import { CartSummaryComponent } from './cart-summary/cart-summary.component';
 
 import { CheckoutRoutingModule } from './checkout-routing.module';
+import { PaymentComponent } from './payment/payment.component';
+import { TotalComponent } from './total/total.component';
 
 
 @NgModule({
   declarations: [
     CheckoutComponent,
-    CartSummaryComponent
+    CartSummaryComponent,
+    BillingAddressComponent,
+    PaymentComponent,
+    TotalComponent
   ],
   imports: [
     CommonModule,
