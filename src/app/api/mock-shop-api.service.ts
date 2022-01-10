@@ -2,6 +2,7 @@ import { AbstractShopApiService } from '@/api/abstract-shop-api.service';
 import { Payload } from '@/interfaces/payload';
 import { CateringPayload } from '@/interfaces/payload/catering-payload';
 import { MerchandiseItemPayload } from '@/interfaces/payload/merchandise-item-payload';
+import { PostOrderPayload } from '@/interfaces/payload/post-order-payload';
 import { TicketItemPayload } from '@/interfaces/payload/ticket-item-payload';
 import { TopUpPayload } from '@/interfaces/payload/top-up-payload';
 import { Injectable } from '@angular/core';
@@ -101,5 +102,7 @@ export class MockShopApiService implements AbstractShopApiService {
     return of({ data } as Payload<MerchandiseItemPayload[]>);
   }
 
-
+  public postOrder(): Observable<Payload<PostOrderPayload | null>> {
+    return of({ data: null });
+  }
 }

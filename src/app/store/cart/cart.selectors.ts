@@ -2,6 +2,7 @@ import { PaymentType } from '@/enums/payment-type';
 import { CartMerchandise } from '@/interfaces/cart/cart-merchandise';
 import { CartTicket } from '@/interfaces/cart/cart-ticket';
 import { CartTopUp } from '@/interfaces/cart/cart-top-up';
+import { PurchaseItem } from '@/interfaces/dto/purchase-dto';
 import { CateringMenu } from '@/interfaces/payload/catering-payload';
 import { AppState } from '@/store/app.state';
 import { State, cartFeatureKey } from '@/store/cart/cart.reducer';
@@ -132,4 +133,49 @@ export const selectTotalWithPaymentFee: MemoizedSelector<AppState, number> = cre
   selectTotal,
   selectPaymentFee,
   (state, total, paymentFee) => (total + paymentFee)
+);
+
+export const selectOrderItems: MemoizedSelector<AppState, PurchaseItem[]> = createSelector(
+  selectCartState,
+  selectTicket,
+  selectMenus,
+  selectTopUp,
+  selectMerchandise,
+  (state, ticket, menus, topUp, merchandise) => {
+    const purchaseItems: PurchaseItem[] = [];
+
+    // prepare Tickets
+    if (ticket) {
+      purchaseItems.push({
+        id: ticket.id,
+        amount: 1
+      });
+    }
+
+    // prepare menus
+    menus.forEach((menu) => {
+      purchaseItems.push({
+        id: menu.id,
+        amount: 1
+      });
+    });
+
+    // prepare TopUp
+    if (topUp && topUp.amount > 0) {
+      purchaseItems.push({
+        id: topUp.id,
+        amount: topUp.amount
+      });
+    }
+
+    // prepare merchandise
+    merchandise.forEach((merchItem) => {
+      purchaseItems.push({
+        id: merchItem.id,
+        amount: merchItem.amount,
+        variant: merchItem.selectedVariants
+      });
+    });
+    return purchaseItems;
+  }
 );
