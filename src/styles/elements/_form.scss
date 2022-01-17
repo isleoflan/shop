@@ -64,17 +64,6 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 2em;
-
-    [type="number"] {
-      -moz-appearance: textfield;
-      appearance: none;
-
-      &::-webkit-outer-spin-button,
-      &::-webkit-inner-spin-button {
-        margin: 0;
-        -webkit-appearance: none;
-      }
-    }
   }
 
   &-radio {
@@ -140,12 +129,12 @@
       justify-content: center;
       width: 36px;
       height: 36px;
-
-      svg {
-        max-width: 100%;
-        max-height: 100%;
-      }
     }
+  }
+
+  svg {
+    max-width: 100%;
+    max-height: 100%;
   }
 }
 
@@ -159,20 +148,20 @@ input {
   border: 2px solid $color-black;
   border-radius: 0;
   outline: none;
+}
 
-  &.ng-dirty {
-    &.ng-invalid {
-      border-color: $color-primary-accent;
-    }
+.ng-dirty {
+  &.ng-invalid {
+    border-color: $color-primary-accent;
   }
+}
 
-  &[type=number] {
-    -moz-appearance: textfield;
+[type=number] {
+  -moz-appearance: textfield;
 
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-      margin: 0;
-      -webkit-appearance: none;
-    }
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
   }
 }

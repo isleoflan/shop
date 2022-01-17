@@ -1,6 +1,6 @@
 @use "abstracts" as *;
 
-@keyframes fadeIn {
+@keyframes fadeInBlock {
   0% {
     opacity: 0;
     display: block;
@@ -31,7 +31,7 @@ app-summary {
   opacity: 0;
 
   .has-total & {
-    animation: fadeIn 0.15s forwards ease-in-out 0.15s;
+    animation: fadeInBlock 0.15s forwards ease-in-out 0.15s;
   }
 }
 

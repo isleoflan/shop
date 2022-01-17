@@ -8,11 +8,11 @@
           <h4>{{menu.title}}</h4>
           <p>{{menu.description}}</p>
           <button (click)="onAddMenu(menu)" *ngIf="!(menuIds$ | async)?.includes(menu.id); else removeButton;"
-                  class="card-button card-button--secondary">
+                  class="button button--secondary button--card">
             Add for {{menu.price | intCurrency}}
           </button>
           <ng-template #removeButton>
-            <button (click)="onRemoveMenu(menu)" class="card-button card-button--secondary">
+            <button (click)="onRemoveMenu(menu)" class="button button--secondary button--card">
               Remove
             </button>
           </ng-template>
@@ -27,7 +27,7 @@
           <h4>{{specialDeal.title}}</h4>
           <p>{{specialDeal.description}}</p>
           <button (click)="onAddAll()" *ngIf="(isSpecialDealEligible$ | async) === false"
-                  class="card-button card-button--secondary">
+                  class="button button--secondary button--card">
             Add all for {{specialDeal.price | intCurrency}}
           </button>
         </div>

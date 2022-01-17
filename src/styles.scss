@@ -5,6 +5,10 @@
 @use "base/typographie";
 @use "base/container";
 
+@use "elements/form";
+@use "elements/button";
+@use "elements/card";
+
 @import url('https://fonts.googleapis.com/css2?family=Changa:wght@400;800&display=swap&family=Material+Icons+Outlined');
 
 .material-icons-outlined {
