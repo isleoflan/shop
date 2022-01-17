@@ -5,6 +5,10 @@
 @use "base/typographie";
 @use "base/container";
 
+@use "elements/form";
+@use "elements/button";
+@use "elements/card";
+
 @import url('https://fonts.googleapis.com/css2?family=Changa:wght@400;800&display=swap&family=Material+Icons+Outlined');
 
 .material-icons-outlined {
@@ -22,8 +26,20 @@
   }
 }
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-20%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
 
 /* Track */
@@ -44,7 +60,7 @@ html {
   font-family: "Changa", sans-serif;
   font-size: 10px;
   font-weight: 400;
-  scroll-behavior: smooth;
+  // scroll-behavior: smooth;
 }
 
 body {

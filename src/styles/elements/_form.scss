@@ -26,7 +26,7 @@
         align-items: center;
         flex-direction: row;
         padding: 0 2.4rem;
-        border: 3px solid black;
+        border: 2px solid black;
         border-right: none;
       }
 
@@ -36,7 +36,7 @@
         align-items: center;
         flex-direction: row;
         padding: 0 2.4rem;
-        border: 3px solid black;
+        border: 2px solid black;
         border-left: none;
       }
     }
@@ -49,27 +49,36 @@
     gap: 1em;
   }
 
+  &-group {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 2em;
+
+    .form-control {
+      width: 100%;
+    }
+  }
+
   .city {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 2em;
-
-    [type="number"] {
-      -moz-appearance: textfield;
-      appearance: none;
-
-      &::-webkit-outer-spin-button,
-      &::-webkit-inner-spin-button {
-        margin: 0;
-        -webkit-appearance: none;
-      }
-    }
   }
 
   &-radio {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     gap: 1em;
+
+    > .radio-button {
+      flex-basis: 0;
+      flex-grow: 1;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
   }
 
   &-errors {
@@ -107,12 +116,25 @@
     font-weight: $font-weight-bold;
     display: flex;
     align-items: center;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
     width: 100%;
     padding: 1.4rem;
     cursor: pointer;
     border: 2px solid $color-black;
+    gap: 1em;
+
+    & .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  svg {
+    max-width: 100%;
+    max-height: 100%;
   }
 }
 
@@ -123,23 +145,23 @@ input {
 
   padding: 1rem 2.4rem;
   cursor: pointer;
-  border: 3px solid $color-black;
+  border: 2px solid $color-black;
   border-radius: 0;
   outline: none;
+}
 
-  &.ng-dirty {
-    &.ng-invalid {
-      border-color: $color-primary-accent;
-    }
+.ng-dirty {
+  &.ng-invalid {
+    border-color: $color-primary-accent;
   }
+}
 
-  &[type=number] {
-    -moz-appearance: textfield;
+[type=number] {
+  -moz-appearance: textfield;
 
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-      margin: 0;
-      -webkit-appearance: none;
-    }
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
   }
 }

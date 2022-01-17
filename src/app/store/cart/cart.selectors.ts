@@ -1,6 +1,8 @@
+import { PaymentType } from '@/enums/payment-type';
 import { CartMerchandise } from '@/interfaces/cart/cart-merchandise';
 import { CartTicket } from '@/interfaces/cart/cart-ticket';
 import { CartTopUp } from '@/interfaces/cart/cart-top-up';
+import { PurchaseItem } from '@/interfaces/dto/purchase-dto';
 import { CateringMenu } from '@/interfaces/payload/catering-payload';
 import { AppState } from '@/store/app.state';
 import { State, cartFeatureKey } from '@/store/cart/cart.reducer';
@@ -12,6 +14,8 @@ const getMenus = (state: State) => state.menus;
 const getMenuIds = (state: State) => state.menuIds;
 const getTopUp = (state: State) => state.topUp;
 const getMerchandise = (state: State) => state.merchandise;
+
+const getPaymentType = (state: State) => state.paymentType;
 
 export const selectCartState: MemoizedSelector<AppState, State> = createFeatureSelector<State>(cartFeatureKey);
 
@@ -80,9 +84,13 @@ export const selectMerchandise: MemoizedSelector<AppState, CartMerchandise[]> = 
 export const selectMerchandiseTotal: MemoizedSelector<AppState, number> = createSelector(
   selectCartState,
   selectMerchandise,
-  (state, merchandise) => merchandise.reduce((acc, next) => acc += next.price * next.amount, 0)
+  (state, merchandise) => merchandise.reduce((acc, next) => acc + (next.price * next.amount), 0)
 );
 
+export const selectPaymentType: MemoizedSelector<AppState, PaymentType> = createSelector(
+  selectCartState,
+  getPaymentType
+);
 
 export const selectTotal: MemoizedSelector<AppState, number> = createSelector(
   selectCartState,
@@ -93,4 +101,81 @@ export const selectTotal: MemoizedSelector<AppState, number> = createSelector(
   (state, ticketTotal, menuTotal, topUpTotal, merchandiseTotal) => (
     [ticketTotal, menuTotal, topUpTotal, merchandiseTotal].reduce((acc, price) => acc + price, 0)
   )
+);
+
+export const selectPaymentFee: MemoizedSelector<AppState, number> = createSelector(
+  selectCartState,
+  selectPaymentType,
+  selectTotal,
+  (state, paymentType, total) => {
+    let paymentFee = 0;
+
+    switch (paymentType) {
+      case PaymentType.PREPAYMENT:
+      case PaymentType.CRYPTO:
+        break;
+      case PaymentType.PAYPAL:
+        paymentFee += total * 0.034;
+        paymentFee += 55;
+        break;
+      case PaymentType.STRIPE:
+        paymentFee += total * 0.029;
+        paymentFee += 30;
+        break;
+    }
+
+    return paymentFee;
+  }
+);
+
+export const selectTotalWithPaymentFee: MemoizedSelector<AppState, number> = createSelector(
+  selectCartState,
+  selectTotal,
+  selectPaymentFee,
+  (state, total, paymentFee) => (total + paymentFee)
+);
+
+export const selectOrderItems: MemoizedSelector<AppState, PurchaseItem[]> = createSelector(
+  selectCartState,
+  selectTicket,
+  selectMenus,
+  selectTopUp,
+  selectMerchandise,
+  (state, ticket, menus, topUp, merchandise) => {
+    const purchaseItems: PurchaseItem[] = [];
+
+    // prepare Tickets
+    if (ticket) {
+      purchaseItems.push({
+        id: ticket.id,
+        amount: 1
+      });
+    }
+
+    // prepare menus
+    menus.forEach((menu) => {
+      purchaseItems.push({
+        id: menu.id,
+        amount: 1
+      });
+    });
+
+    // prepare TopUp
+    if (topUp && topUp.amount > 0) {
+      purchaseItems.push({
+        id: topUp.id,
+        amount: topUp.amount
+      });
+    }
+
+    // prepare merchandise
+    merchandise.forEach((merchItem) => {
+      purchaseItems.push({
+        id: merchItem.id,
+        amount: merchItem.amount,
+        variant: merchItem.selectedVariants
+      });
+    });
+    return purchaseItems;
+  }
 );

@@ -1,0 +1,8 @@
+@use "abstracts" as *;
+
+.card {
+  padding: 48px;
+  background: white;
+  @include border-radius;
+  @include shadow;
+}

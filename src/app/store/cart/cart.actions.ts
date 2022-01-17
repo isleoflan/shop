@@ -1,3 +1,4 @@
+import { PaymentType } from '@/enums/payment-type';
 import { CartMerchandise } from '@/interfaces/cart/cart-merchandise';
 import { CartTopUp } from '@/interfaces/cart/cart-top-up';
 import { CateringMenu } from '@/interfaces/payload/catering-payload';
@@ -41,4 +42,9 @@ export const addMerchandise = createAction(
 export const decreaseMerchandise = createAction(
   '[Cart] Decrease Merchandise',
   props<{ merchandiseId: string }>()
+);
+
+export const setPaymentType = createAction(
+  '[Cart] Set Payment Type',
+  props<{ paymentType: PaymentType }>()
 );

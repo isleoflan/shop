@@ -1,1 +1,18 @@
-<p>checkout works!</p>
+<app-header></app-header>
+
+<div class="container">
+  <h1 class="h2 container-title">Checkout</h1>
+  <section class="main-content">
+    <div class="user-information">
+      <app-billing-address (form)="setBillingAddressForm($event)" class="card"></app-billing-address>
+      <app-payment class="card"></app-payment>
+    </div>
+    <div class="cart">
+      <app-cart-summary class="card"></app-cart-summary>
+      <app-total class="card"></app-total>
+
+      <button (click)="onCheckout()" [disabled]="!billingAddressForm.valid" class="button button--primary">Checkout
+      </button>
+    </div>
+  </section>
+</div>

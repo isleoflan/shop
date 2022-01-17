@@ -1,3 +1,4 @@
+import { Gender } from '@/enums/gender';
 import { PaymentType } from '@/enums/payment-type';
 
 export interface PurchaseDto {
@@ -9,18 +10,20 @@ export interface PurchaseDto {
 export interface PurchaseItem {
   id: string;
   amount: number;
-  variant: PurchaseItemVariant[];
+  variant?: PurchaseItemVariant[];
 }
 
 export interface PurchaseItemVariant {
   variantId: string;
-  option: string;
+  optionId: string;
 }
 
 export interface User {
+  gender: Gender;
   forename: string;
   lastname: string;
+  mail: string;
   street: string;
-  plz: number;
+  zipCode: number;
   city: string;
 }
