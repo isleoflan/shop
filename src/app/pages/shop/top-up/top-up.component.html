@@ -9,8 +9,16 @@
       amet.
     </p>
 
-    <form>
-      <input type="number">
+    <form [formGroup]="topUpForm">
+      <input formControlName="id" type="hidden" value="">
+      <div class="form-control--group">
+        <span class="prepend">{{ 0 | intCurrency | slice: 0:1}}</span>
+        <input (blur)="onBlur()" (keydown)="onKeyDown($event)" formControlName="amount" min="0" step="1" type="number">
+        <span class="append">.00</span>
+      </div>
     </form>
+  </div>
+  <div class="button button--primary button--no-padding button--scroll">
+    <span (click)="onScrollToMerchandise()" class="material-icons-outlined icon">expand_more</span>
   </div>
 </div>

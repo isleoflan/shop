@@ -1,5 +1,4 @@
-@use "abstracts/index" as *;
-@use "elements/form";
+@use "abstracts" as *;
 
 :host {
   display: flex;
@@ -20,8 +19,12 @@
 
 .card {
   width: 30%;
-  padding: 48px;
-  background: white;
-  @include border-radius;
-  @include shadow;
+}
+
+input {
+  text-align: right;
+}
+
+.button--scroll {
+  margin-top: 48px;
 }

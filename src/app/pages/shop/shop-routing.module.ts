@@ -5,7 +5,12 @@ import { ShopComponent } from './shop.component';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: ShopComponent
+  },
+  {
+    path: 'checkout',
+    loadChildren: () => import('./checkout/checkout.module').then((m) => m.CheckoutModule)
   }
 ];
 

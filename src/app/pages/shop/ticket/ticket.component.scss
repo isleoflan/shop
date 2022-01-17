@@ -2,10 +2,69 @@
 
 :host {
   position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+
+  &::before {
+    position: absolute;
+    z-index: -1;
+    left: -50vw;
+    width: 110vw;
+    height: 100%;
+    content: "";
+    @include shadow();
+    transform: skew(-15deg);
+    animation: show-bg 1s forwards cubic-bezier(0, 0, 0.25, 1);
+    opacity: 0;
+    background: linear-gradient(45deg, $color-primary-dark 50%, $color-primary-light 100%);
+  }
+}
+
+h1, h2, h3 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 3.5vw;
   align-self: center;
+  width: 50%;
+  margin-bottom: 2rem;
+  padding: 0 24px;
+  animation: fade-in 1s forwards cubic-bezier(0, 0, 0.25, 1);
+
+  opacity: 0;
+  color: white;
+}
+
+
+.ticket-wrapper {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  flex-direction: column;
   width: calc(50% - 48px);
+  animation: fade-in 1s forwards cubic-bezier(0, 0, 0.25, 1) 0.5s;
+
+  opacity: 0;
+  gap: 48px;
+}
+
+.ticket {
+  position: relative;
+  width: 100%;
   @include drop-shadow;
 }
+
+.background {
+  svg {
+    display: flex;
+  }
+}
+
 
 .foreground {
   position: absolute;
@@ -21,9 +80,9 @@
   padding: 4vw 0 4vw 5vw;
 }
 
+
 h2 {
-  font-size: 2.5vw;
-  margin: 0;
+  font-size: 2.1vw;
 }
 
 p {
@@ -34,7 +93,6 @@ p {
 
 h3 {
   font-size: 1.75vw;
-  margin: 0;
   margin-top: auto;
 }
 
@@ -47,9 +105,13 @@ h3 {
   justify-content: center;
   padding-right: 2.8vw;
 
-  span {
+  &__inner {
     display: inline-block;
     transform: rotate(-90deg);
     transform-origin: center center;
   }
+}
+
+.add {
+  padding: 0 36px;
 }

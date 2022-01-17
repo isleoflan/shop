@@ -1,5 +1,4 @@
 @use "abstracts/index" as *;
-@use "elements/card-button";
 
 :host {
   display: flex;
@@ -28,6 +27,10 @@
   gap: 36px;
 }
 
+.special-deal {
+  grid-area: 1 / 4;
+}
+
 .day-title {
   text-align: center;
 }
@@ -41,10 +44,65 @@
 .meal {
   position: relative;
   padding: 24px 36px;
+  transition: all ease-in-out 0.15s;
   color: white;
   background: linear-gradient(45deg, $color-primary-dark 30%, $color-primary-light 100%);
+  background-position: 50% 50%;
   @include shadow;
   @include border-radius;
+  background-size: 300%;
   aspect-ratio: 2 / 1;
 
+  &:after,
+  &:before {
+    position: absolute;
+    visibility: hidden;
+    width: 24px;
+    height: 24px;
+    content: "";
+    transition: all ease-in-out;
+    transition-delay: 0s;
+    transition-duration: 0s;
+    opacity: 0;
+    border-radius: 50%;
+
+    background-color: white;
+  }
+
+
+  &:after {
+    right: -5px;
+    bottom: -5px;
+    box-shadow: -15px 12px 0px white, 12px -15px 0px white;
+  }
+
+  &:before {
+    top: -5px;
+    left: -5px;
+    box-shadow: 15px -12px 0px white, -12px 15px 0px white;
+  }
+}
+
+.selected {
+  background-position: 100% 50%;
+  box-shadow: none;
+
+  &:after,
+  &:before {
+    visibility: visible;
+    transition-duration: 0.15s;
+    opacity: 1;
+  }
+
+  &:after {
+    transition-delay: 1s;
+  }
+
+  &:before {
+    transition-delay: 1.5s;
+  }
+}
+
+.button--scroll {
+  margin-top: 96px;
 }

@@ -1,0 +1,43 @@
+@use "abstracts" as *;
+@use "elements/button";
+
+:host {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 24px 0;
+  background-color: $color-white;
+  @include shadow;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+
+  .icon {
+    padding: 6px;
+
+    span {
+      font-size: 36px;
+    }
+  }
+
+  .text {
+    font-size: 30px;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+  }
+}

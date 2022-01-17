@@ -1,3 +1,4 @@
+import { CartFacadeService } from '@/store/cart/cart-facade.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent {
+
+  hasTicket$ = this.cartFacadeService.hasTicket$;
+
+  constructor(
+    private cartFacadeService: CartFacadeService
+  ) {
+  }
 
 }

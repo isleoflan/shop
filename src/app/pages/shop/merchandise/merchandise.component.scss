@@ -1,5 +1,4 @@
 @use "abstracts/index" as *;
-@use "elements/card-button";
 
 :host {
   display: flex;
@@ -7,7 +6,7 @@
   flex-direction: column;
   width: 100%;
   min-height: 100vh;
-  padding: 96px 0;
+  padding: 96px 0 120px 0;
 }
 
 .container {
@@ -35,4 +34,37 @@
   flex-direction: column;
   padding: 24px 24px 48px 24px;
   gap: 24px;
+}
+
+.variants {
+  margin-top: auto;
+}
+
+.variants,
+.variant {
+  display: flex;
+  flex-direction: column;
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  min-width: 48px;
+  padding: 12px;
+  cursor: pointer;
+  border: 1px solid $color-gray;
+  border-radius: 12px;
+
+  &--selected {
+    font-weight: $font-weight-bold;
+    background-color: $color-gray;
+  }
 }
