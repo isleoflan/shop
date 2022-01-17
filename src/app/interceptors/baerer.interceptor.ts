@@ -8,11 +8,11 @@ export class BaererInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    const token: string | null = localStorage.getItem('token');
+    const iolAccessToken: string | null = localStorage.getItem('iol-access-token');
 
-    if (token) {
+    if (iolAccessToken) {
       request = request.clone({
-        headers: request.headers.set('Authorization', 'Bearer ' + token)
+        headers: request.headers.set('Authorization', 'Bearer ' + iolAccessToken)
       });
     }
 

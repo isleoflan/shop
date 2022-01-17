@@ -1,5 +1,5 @@
 import { AbstractShopApiService } from '@/api/abstract-shop-api.service';
-import { MockShopApiService } from '@/api/mock-shop-api.service';
+import { ShopApiService } from '@/api/shop-api.service';
 import { AppStoreModule } from '@/store/app-store.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -18,7 +18,7 @@ import { RedirectComponent } from './pages/redirect/redirect.component';
   providers: [
     httpInterceptorProviders,
     { provide: AbstractAuthApiService, useClass: AuthApiService },
-    { provide: AbstractShopApiService, useClass: MockShopApiService }
+    { provide: AbstractShopApiService, useClass: ShopApiService }
   ],
   bootstrap: [AppComponent]
 })
