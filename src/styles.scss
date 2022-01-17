@@ -22,6 +22,17 @@
   }
 }
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-20%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;

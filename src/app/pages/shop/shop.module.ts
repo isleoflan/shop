@@ -6,14 +6,12 @@ import { TopUpModule } from '@/pages/shop/top-up/top-up.module';
 import { CartStoreModule } from '@/store/cart/cart-store.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ShopHeaderComponent } from './shop-header/shop-header.component';
 import { ShopRoutingModule } from './shop-routing.module';
 import { ShopComponent } from './shop.component';
 
 @NgModule({
   declarations: [
     ShopComponent,
-    ShopHeaderComponent,
   ],
   imports: [
     CommonModule,

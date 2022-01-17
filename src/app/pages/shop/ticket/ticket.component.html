@@ -1,4 +1,9 @@
-<ng-container *ngIf="(tickets$ | async) as tickets">
+<div *ngIf="(tickets$ | async) as tickets" class="container">
+  <h1 *ngIf="tickets.length">
+    Get your ticket for<br>
+    Isle of LAN 2022
+  </h1>
+
   <div *ngFor="let ticket of tickets" class="ticket-wrapper">
     <div class="ticket">
       <div class="background">
@@ -77,5 +82,4 @@
       </ng-template>
     </div>
   </div>
-</ng-container>
-
+</div>
