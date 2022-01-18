@@ -1,4 +1,5 @@
 import { AbstractShopApiService } from '@/api/abstract-shop-api.service';
+import { PurchaseDto } from '@/interfaces/dto/purchase-dto';
 import { Payload } from '@/interfaces/payload';
 import { CateringPayload } from '@/interfaces/payload/catering-payload';
 import { MerchandiseItemPayload } from '@/interfaces/payload/merchandise-item-payload';
@@ -7,7 +8,7 @@ import { TicketItemPayload } from '@/interfaces/payload/ticket-item-payload';
 import { TopUpPayload } from '@/interfaces/payload/top-up-payload';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, first, of } from 'rxjs';
+import { Observable, first } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +36,8 @@ export class ShopApiService implements AbstractShopApiService {
     return this.http.get<Payload<TopUpPayload>>('/products/topup').pipe(first());
   }
 
-  postOrder(/*purchaseDto: PurchaseDto*/): Observable<Payload<PostOrderPayload | null>> {
-    return of({ data: null });
+  postOrder(purchaseDto: PurchaseDto): Observable<Payload<PostOrderPayload | null>> {
+    return this.http.post<Payload<PostOrderPayload>>('/order/checkout', purchaseDto).pipe(first());
   }
 
 }
