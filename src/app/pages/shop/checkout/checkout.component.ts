@@ -36,8 +36,9 @@ export class CheckoutComponent {
           paymentType,
           cart
         };
-        console.log(purchaseDto);
-        this.shopApiService.postOrder(purchaseDto);
+        this.shopApiService.postOrder(purchaseDto).pipe(first()).subscribe((response) => {
+          console.log(response);
+        });
       });
     }
   }
