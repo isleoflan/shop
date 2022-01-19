@@ -23,7 +23,8 @@ export class BillingAddressComponent implements OnInit, OnDestroy {
     email: new FormControl('', [Validators.required, Validators.email]),
     address: new FormControl('', [Validators.required]),
     zipCode: new FormControl('', [Validators.required, Validators.min(1000), Validators.max(9999)]),
-    city: new FormControl('', [Validators.required])
+    city: new FormControl('', [Validators.required]),
+    vegetarian: new FormControl(false)
   });
 
   private destroyed$: Subject<boolean> = new Subject<boolean>();
