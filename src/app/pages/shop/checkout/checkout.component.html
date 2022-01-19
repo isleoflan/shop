@@ -9,6 +9,7 @@
     </div>
     <div class="cart">
       <app-cart-summary class="card"></app-cart-summary>
+      <app-voucher *ngIf="(voucherDiscount$ |async) === 0" class="card"></app-voucher>
       <app-total class="card"></app-total>
 
       <button (click)="onCheckout()" [disabled]="!billingAddressForm.valid" class="button button--primary">Checkout

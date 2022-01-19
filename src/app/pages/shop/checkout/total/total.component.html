@@ -5,15 +5,25 @@
       <td>Subtotal:</td>
       <td class="price">{{ total | intCurrency }}</td>
     </tr>
+    <ng-container *ngIf="(voucher$ | async) as voucher">
+      <tr *ngIf="voucher.discount">
+        <td>Discount ({{voucher.voucher}}):</td>
+        <td class="price">{{ voucher.discount | intCurrency }}</td>
+      </tr>
+    </ng-container>
+
     <tr *ngIf="(paymentFee$ |async) as paymentFee">
       <td>Payment fee:</td>
       <td class="price">{{ paymentFee | intCurrency }}</td>
     </tr>
   </tbody>
   <tfoot>
-    <tr *ngIf="(totalWithPaymentFee$ | async) as totalWithPaymentFee">
+    <tr>
       <td>Total:</td>
-      <td class="price">{{ totalWithPaymentFee | intCurrency }}</td>
+      <td *ngIf="(totalWithPaymentFee$ | async) as total; else zeroTotal" class="price">{{ total | intCurrency }}</td>
+      <ng-template #zeroTotal>
+        <td class="price">{{ 0 | intCurrency }}</td>
+      </ng-template>
     </tr>
   </tfoot>
 </table>

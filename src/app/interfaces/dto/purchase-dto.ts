@@ -5,6 +5,7 @@ export interface PurchaseDto {
   user: User;
   cart: PurchaseItem[];
   paymentType: PaymentType;
+  voucher: string;
 }
 
 export interface PurchaseItem {

@@ -4,6 +4,7 @@ import { CartTicket } from '@/interfaces/cart/cart-ticket';
 import { CartTopUp } from '@/interfaces/cart/cart-top-up';
 import { PurchaseItem } from '@/interfaces/dto/purchase-dto';
 import { CateringMenu } from '@/interfaces/payload/catering-payload';
+import { Voucher } from '@/interfaces/voucher';
 import { AppState } from '@/store/app.state';
 import { State, cartFeatureKey } from '@/store/cart/cart.reducer';
 import { CateringStoreSelectors } from '@/store/catering';
@@ -16,6 +17,9 @@ const getTopUp = (state: State) => state.topUp;
 const getMerchandise = (state: State) => state.merchandise;
 
 const getPaymentType = (state: State) => state.paymentType;
+
+const getVoucher = (state: State) => state.voucher;
+const getVoucherDiscount = (state: State) => state.voucher.discount;
 
 export const selectCartState: MemoizedSelector<AppState, State> = createFeatureSelector<State>(cartFeatureKey);
 
@@ -92,6 +96,16 @@ export const selectPaymentType: MemoizedSelector<AppState, PaymentType> = create
   getPaymentType
 );
 
+export const selectVoucher: MemoizedSelector<AppState, Voucher> = createSelector(
+  selectCartState,
+  getVoucher
+);
+
+export const selectVoucherTotal: MemoizedSelector<AppState, number> = createSelector(
+  selectCartState,
+  getVoucherDiscount
+);
+
 export const selectTotal: MemoizedSelector<AppState, number> = createSelector(
   selectCartState,
   selectTicketPrice,
@@ -132,7 +146,11 @@ export const selectTotalWithPaymentFee: MemoizedSelector<AppState, number> = cre
   selectCartState,
   selectTotal,
   selectPaymentFee,
-  (state, total, paymentFee) => (total + paymentFee)
+  selectVoucherTotal,
+  (state, total, paymentFee, voucherTotal) => {
+    console.log(total, paymentFee, voucherTotal);
+    return (total + paymentFee + voucherTotal);
+  }
 );
 
 export const selectOrderItems: MemoizedSelector<AppState, PurchaseItem[]> = createSelector(

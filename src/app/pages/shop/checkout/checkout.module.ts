@@ -11,6 +11,7 @@ import { CartSummaryComponent } from './cart-summary/cart-summary.component';
 import { CheckoutRoutingModule } from './checkout-routing.module';
 import { PaymentComponent } from './payment/payment.component';
 import { TotalComponent } from './total/total.component';
+import { VoucherComponent } from './voucher/voucher.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { TotalComponent } from './total/total.component';
     CartSummaryComponent,
     BillingAddressComponent,
     PaymentComponent,
-    TotalComponent
+    TotalComponent,
+    VoucherComponent
   ],
   imports: [
     CommonModule,

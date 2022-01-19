@@ -3,6 +3,7 @@ import { CartMerchandise } from '@/interfaces/cart/cart-merchandise';
 import { CartTopUp } from '@/interfaces/cart/cart-top-up';
 import { CateringMenu } from '@/interfaces/payload/catering-payload';
 import { TicketItemPayload } from '@/interfaces/payload/ticket-item-payload';
+import { Voucher } from '@/interfaces/voucher';
 import { createAction, props } from '@ngrx/store';
 
 export const addTicket = createAction(
@@ -48,3 +49,9 @@ export const setPaymentType = createAction(
   '[Cart] Set Payment Type',
   props<{ paymentType: PaymentType }>()
 );
+
+export const setVoucher = createAction(
+  '[Cart] Set Voucher',
+  props<{ voucher: Voucher }>()
+);
+
