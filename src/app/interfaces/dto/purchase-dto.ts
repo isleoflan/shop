@@ -5,6 +5,7 @@ export interface PurchaseDto {
   user: User;
   cart: PurchaseItem[];
   paymentType: PaymentType;
+  voucher: string;
 }
 
 export interface PurchaseItem {
@@ -26,4 +27,5 @@ export interface User {
   street: string;
   zipCode: number;
   city: string;
+  vegetarian: boolean;
 }

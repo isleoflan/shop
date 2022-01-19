@@ -5,6 +5,7 @@ import { MerchandiseItemPayload } from '@/interfaces/payload/merchandise-item-pa
 import { PostOrderPayload } from '@/interfaces/payload/post-order-payload';
 import { TicketItemPayload } from '@/interfaces/payload/ticket-item-payload';
 import { TopUpPayload } from '@/interfaces/payload/top-up-payload';
+import { VoucherPayload } from '@/interfaces/payload/voucher-payload';
 import { Observable } from 'rxjs';
 
 export abstract class AbstractShopApiService {
@@ -18,5 +19,7 @@ export abstract class AbstractShopApiService {
   public abstract getMerchandise(): Observable<Payload<MerchandiseItemPayload[]>>;
 
   public abstract postOrder(purchaseDto: PurchaseDto): Observable<Payload<PostOrderPayload | null>>;
+
+  public abstract getVoucher(voucher: string): Observable<Payload<VoucherPayload | null>>;
 
 }

@@ -1,0 +1,9 @@
+<h2>
+  <label for="voucher">Voucher</label>
+</h2>
+<form (ngSubmit)="onSubmit()" [formGroup]="voucherForm">
+  <input formControlName="voucher" id="voucher" type="text">
+  <button [disabled]="!voucherForm.valid || voucherForm.value.voucher === ''" class="button button--secondary"
+          type="submit">Apply
+  </button>
+</form>

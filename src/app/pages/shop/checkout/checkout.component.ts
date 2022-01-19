@@ -1,9 +1,8 @@
 import { AbstractShopApiService } from '@/api/abstract-shop-api.service';
-import { PurchaseDto, User } from '@/interfaces/dto/purchase-dto';
 import { CartFacadeService } from '@/store/cart/cart-facade.service';
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { first, combineLatestWith } from 'rxjs';
+import { first, combineLatestWith, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-checkout',
@@ -13,6 +12,7 @@ import { first, combineLatestWith } from 'rxjs';
 export class CheckoutComponent {
 
   billingAddressForm: FormGroup = new FormGroup({});
+  voucherDiscount$: Observable<number> = this.cartFacadeService.voucherDiscount$;
 
   constructor(
     private shopApiService: AbstractShopApiService,
@@ -27,17 +27,25 @@ export class CheckoutComponent {
   onCheckout(): void {
     if (this.billingAddressForm.valid) {
       this.cartFacadeService.paymentType$.pipe(
-        combineLatestWith(this.cartFacadeService.orderItems$),
+        combineLatestWith([this.cartFacadeService.orderItems$, this.cartFacadeService.voucher$]),
         first()
       ).subscribe(([paymentType, cart]) => {
+
+        console.log(paymentType, cart);
+
+        /*
         const user: User = this.billingAddressForm.value as User;
         const purchaseDto: PurchaseDto = {
           user,
           paymentType,
-          cart
+         // cart,
+         // voucher,
         };
-        console.log(purchaseDto);
-        this.shopApiService.postOrder(purchaseDto);
+        this.shopApiService.postOrder(purchaseDto).pipe(first()).subscribe((response) => {
+          console.log(response);
+        });
+
+         */
       });
     }
   }
