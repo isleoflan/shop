@@ -4,6 +4,7 @@ import { CateringStoreReducer } from '@/store/catering';
 import { MerchandiseStoreReducer } from '@/store/merchandise';
 import { TicketStoreReducer } from '@/store/ticket';
 import { TopUpStoreReducer } from '@/store/top-up';
+import { UserStoreReducer } from '@/store/user';
 
 export interface AppState {
   auth: AuthStoreReducer.State;
@@ -12,4 +13,5 @@ export interface AppState {
   ticket: TicketStoreReducer.State;
   merchandise: MerchandiseStoreReducer.State;
   cart: CartStoreReducer.State;
+  user: UserStoreReducer.State;
 }

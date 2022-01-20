@@ -4,6 +4,7 @@ import { Payload } from '@/interfaces/payload';
 import { CateringPayload } from '@/interfaces/payload/catering-payload';
 import { MerchandiseItemPayload } from '@/interfaces/payload/merchandise-item-payload';
 import { PostOrderPayload } from '@/interfaces/payload/post-order-payload';
+import { TicketAvailabilityPayload } from '@/interfaces/payload/ticket-availability-payload';
 import { TicketItemPayload } from '@/interfaces/payload/ticket-item-payload';
 import { TopUpPayload } from '@/interfaces/payload/top-up-payload';
 import { VoucherPayload } from '@/interfaces/payload/voucher-payload';
@@ -47,6 +48,10 @@ export class ShopApiService implements AbstractShopApiService {
 
   cancelOrder(orderId: string): Observable<Payload<null>> {
     return this.http.delete<Payload<null>>('/order/cancel', { params: { orderId } }).pipe(first());
+  }
+
+  getAvailability(): Observable<Payload<TicketAvailabilityPayload>> {
+    return this.http.get<Payload<TicketAvailabilityPayload>>('/tickets/availability').pipe(first());
   }
 
 }

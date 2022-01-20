@@ -3,6 +3,7 @@ import { Payload } from '@/interfaces/payload';
 import { CateringPayload } from '@/interfaces/payload/catering-payload';
 import { MerchandiseItemPayload } from '@/interfaces/payload/merchandise-item-payload';
 import { PostOrderPayload } from '@/interfaces/payload/post-order-payload';
+import { TicketAvailabilityPayload } from '@/interfaces/payload/ticket-availability-payload';
 import { TicketItemPayload } from '@/interfaces/payload/ticket-item-payload';
 import { TopUpPayload } from '@/interfaces/payload/top-up-payload';
 import { VoucherPayload } from '@/interfaces/payload/voucher-payload';
@@ -14,6 +15,17 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class MockShopApiService implements AbstractShopApiService {
+  public getAvailability(): Observable<Payload<TicketAvailabilityPayload>> {
+    return of({
+      data: {
+        total: 80,
+        sold: 1,
+        reserved: 1,
+        free: 78
+      }
+    });
+  }
+
   public getVoucher(): Observable<Payload<VoucherPayload | null>> {
     return of({
       data: {
