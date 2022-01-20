@@ -1,0 +1,21 @@
+@use "abstracts" as *;
+
+:host {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 2em;
+}
+
+h2 {
+  margin-bottom: 0;
+}
+
+form {
+  display: flex;
+
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  gap: 2em;
+}

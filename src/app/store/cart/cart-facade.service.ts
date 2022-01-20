@@ -1,14 +1,18 @@
+import { AbstractShopApiService } from '@/api/abstract-shop-api.service';
 import { PaymentType } from '@/enums/payment-type';
 import { CartMerchandise } from '@/interfaces/cart/cart-merchandise';
 import { CartTopUp } from '@/interfaces/cart/cart-top-up';
 import { PurchaseItem } from '@/interfaces/dto/purchase-dto';
+import { Payload } from '@/interfaces/payload';
 import { CateringMenu } from '@/interfaces/payload/catering-payload';
 import { TicketItemPayload } from '@/interfaces/payload/ticket-item-payload';
+import { VoucherPayload } from '@/interfaces/payload/voucher-payload';
+import { Voucher } from '@/interfaces/voucher';
 import { AppState } from '@/store/app.state';
 import { CartStoreActions, CartStoreSelectors } from '@/store/cart/index';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,12 +33,26 @@ export class CartFacadeService {
   merchandise$ = this.store.select(CartStoreSelectors.selectMerchandise);
 
   paymentType$: Observable<PaymentType> = this.store.select(CartStoreSelectors.selectPaymentType);
+  voucher$: Observable<Voucher> = this.store.select(CartStoreSelectors.selectVoucher);
+  voucherDiscount$: Observable<number> = this.store.select(CartStoreSelectors.selectVoucherTotal);
 
   orderItems$: Observable<PurchaseItem[]> = this.store.select(CartStoreSelectors.selectOrderItems);
 
   constructor(
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private shopApiService: AbstractShopApiService
   ) {
+  }
+
+  setVoucher(voucherId: string): Observable<Payload<VoucherPayload | null>> {
+    return this.shopApiService.getVoucher(voucherId).pipe(
+      tap((response) => {
+          this.store.dispatch({
+            type: CartStoreActions.setVoucher.type,
+            voucher: { voucher: voucherId, discount: response.data?.discount }
+          });
+        }
+      ));
   }
 
   addTicket(ticketItemPayload: TicketItemPayload): void {
@@ -72,4 +90,6 @@ export class CartFacadeService {
   setPaymentType(paymentType: PaymentType): void {
     this.store.dispatch({ type: CartStoreActions.setPaymentType.type, paymentType });
   }
+
+
 }

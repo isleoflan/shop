@@ -3,6 +3,7 @@ import { CartMerchandise } from '@/interfaces/cart/cart-merchandise';
 import { CartTicket } from '@/interfaces/cart/cart-ticket';
 import { CartTopUp } from '@/interfaces/cart/cart-top-up';
 import { CateringMenu } from '@/interfaces/payload/catering-payload';
+import { Voucher } from '@/interfaces/voucher';
 import {
   addTicket,
   addMenu,
@@ -12,7 +13,8 @@ import {
   addMerchandise,
   removeSpecialDeal,
   decreaseMerchandise,
-  setPaymentType
+  setPaymentType,
+  setVoucher
 } from '@/store/cart/cart.actions';
 import { createReducer, on } from '@ngrx/store';
 
@@ -29,6 +31,7 @@ export interface State {
   merchandise: CartMerchandise[],
 
   paymentType: PaymentType,
+  voucher: Voucher;
 }
 
 export const initialState: State = {
@@ -39,6 +42,10 @@ export const initialState: State = {
   menus: [],
   topUp: null,
   merchandise: [],
+  voucher: {
+    voucher: '',
+    discount: 0
+  },
 
   paymentType: PaymentType.PREPAYMENT
 };
@@ -190,6 +197,13 @@ export const reducer = createReducer(
     return {
       ...state,
       paymentType
+    };
+  }),
+
+  on(setVoucher, (state: State, { voucher }) => {
+    return {
+      ...state,
+      voucher
     };
   })
 );

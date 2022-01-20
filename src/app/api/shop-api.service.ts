@@ -6,6 +6,7 @@ import { MerchandiseItemPayload } from '@/interfaces/payload/merchandise-item-pa
 import { PostOrderPayload } from '@/interfaces/payload/post-order-payload';
 import { TicketItemPayload } from '@/interfaces/payload/ticket-item-payload';
 import { TopUpPayload } from '@/interfaces/payload/top-up-payload';
+import { VoucherPayload } from '@/interfaces/payload/voucher-payload';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, first } from 'rxjs';
@@ -38,6 +39,10 @@ export class ShopApiService implements AbstractShopApiService {
 
   postOrder(purchaseDto: PurchaseDto): Observable<Payload<PostOrderPayload | null>> {
     return this.http.post<Payload<PostOrderPayload>>('/order/checkout', purchaseDto).pipe(first());
+  }
+
+  getVoucher(voucher: string): Observable<Payload<VoucherPayload>> {
+    return this.http.get<Payload<VoucherPayload>>('/voucher', { params: { voucher } }).pipe(first());
   }
 
 }

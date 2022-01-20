@@ -17,9 +17,10 @@
                 Prepayment / TWINT
               </span>
   </label>
-  <label class="radio-button">
-    <input formControlName="paymentType" name="paymentType" type="radio" value="{{PAYPAL}}">
-    <span class="radio-button-value">
+  <ng-container *ngIf="(restrictedPaymentTypes$ | async)">
+    <label class="radio-button">
+      <input formControlName="paymentType" name="paymentType" type="radio" value="{{PAYPAL}}">
+      <span class="radio-button-value">
                 <span class="icon">
                   <svg aria-hidden="true" class="svg-inline--fa fa-paypal" data-icon="paypal" data-prefix="fab"
                        focusable="false" role="img" viewBox="0 0 384 512"
@@ -31,10 +32,10 @@
                 </span>
                 PayPal
               </span>
-  </label>
-  <label class="radio-button">
-    <input formControlName="paymentType" name="paymentType" type="radio" value="{{STRIPE}}">
-    <span class="radio-button-value">
+    </label>
+    <label class="radio-button">
+      <input formControlName="paymentType" name="paymentType" type="radio" value="{{STRIPE}}">
+      <span class="radio-button-value">
                 <span class="icon">
                   <svg aria-hidden="true" class="svg-inline--fa fa-cc-stripe" data-icon="cc-stripe" data-prefix="fab"
                        focusable="false" role="img" viewBox="0 0 576 512"
@@ -47,10 +48,10 @@
                 </span>
                 Credit Card
               </span>
-  </label>
-  <label class="radio-button">
-    <input formControlName="paymentType" name="paymentType" type="radio" value="{{CRYPTO}}">
-    <span class="radio-button-value">
+    </label>
+    <label class="radio-button">
+      <input formControlName="paymentType" name="paymentType" type="radio" value="{{CRYPTO}}">
+      <span class="radio-button-value">
                 <span class="icon">
                   <svg aria-hidden="true" class="svg-inline--fa fa-coins" data-icon="coins" data-prefix="fas"
                        focusable="false" role="img" viewBox="0 0 512 512"
@@ -60,7 +61,14 @@
                       fill="currentColor"
                     ></path></svg>
                 </span>
-      {{CRYPTO | titlecase}}
+        {{CRYPTO | titlecase}}
               </span>
-  </label>
+
+      <span class="info">
+        <span appTooltip="BTC, BCH, ETH, LTC, DOGE, DAI" class="material-icons-outlined">
+          info
+        </span>
+      </span>
+    </label>
+  </ng-container>
 </form>

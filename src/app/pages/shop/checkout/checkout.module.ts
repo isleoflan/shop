@@ -1,4 +1,5 @@
 import { HeaderModule } from '@/components/header/header.module';
+import { DirectivesModule } from '@/directives/directives.module';
 import { CheckoutComponent } from '@/pages/shop/checkout/checkout.component';
 import { PipesModule } from '@/pipes/pipes.module';
 import { CartStoreModule } from '@/store/cart/cart-store.module';
@@ -11,6 +12,7 @@ import { CartSummaryComponent } from './cart-summary/cart-summary.component';
 import { CheckoutRoutingModule } from './checkout-routing.module';
 import { PaymentComponent } from './payment/payment.component';
 import { TotalComponent } from './total/total.component';
+import { VoucherComponent } from './voucher/voucher.component';
 
 
 @NgModule({
@@ -19,7 +21,8 @@ import { TotalComponent } from './total/total.component';
     CartSummaryComponent,
     BillingAddressComponent,
     PaymentComponent,
-    TotalComponent
+    TotalComponent,
+    VoucherComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +30,8 @@ import { TotalComponent } from './total/total.component';
     HeaderModule,
     ReactiveFormsModule,
     PipesModule,
-    CartStoreModule
+    CartStoreModule,
+    DirectivesModule
   ]
 })
 export class CheckoutModule {
