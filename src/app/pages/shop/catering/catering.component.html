@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="container-title">Select your menu</h2>
+  <h2 class="container-title">Welche Essen dürfen wir für dich kochen?</h2>
   <div *ngIf="(menusByDay$ | async) as days" class="days">
     <div *ngFor="let day of days" class="day">
       <h3 class="day-title">{{day[0].date | date:'cccc'}}</h3>
@@ -9,11 +9,11 @@
           <p>{{menu.description}}</p>
           <button (click)="onAddMenu(menu)" *ngIf="!(menuIds$ | async)?.includes(menu.id); else removeButton;"
                   class="button button--secondary button--card">
-            Add for {{menu.price | intCurrency}}
+            {{menu.price | intCurrency}}
           </button>
           <ng-template #removeButton>
             <button (click)="onRemoveMenu(menu)" class="button button--secondary button--card">
-              Remove
+              Entfernen
             </button>
           </ng-template>
         </div>
@@ -28,7 +28,7 @@
           <p>{{specialDeal.description}}</p>
           <button (click)="onAddAll()" *ngIf="(isSpecialDealEligible$ | async) === false"
                   class="button button--secondary button--card">
-            Add all for {{specialDeal.price | intCurrency}}
+            Alle für {{specialDeal.price | intCurrency}}
           </button>
         </div>
       </div>

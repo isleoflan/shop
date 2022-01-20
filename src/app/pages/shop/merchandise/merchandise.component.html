@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="container-title">Our delux merchandise</h2>
+  <h2 class="container-title">Merchandise & Stuff</h2>
 
   <section *ngIf="(merchandise$ |async) as merchandise" class="merchandise">
     <article *ngFor="let item of merchandise" class="item">
@@ -24,7 +24,7 @@
         </div>
       </div>
       <button (click)="onAddToCart(item)" class="button button--primary button--card">
-        Add for {{item.price | intCurrency}}
+        {{item.price | intCurrency}}
       </button>
     </article>
   </section>
