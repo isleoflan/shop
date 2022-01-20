@@ -55,3 +55,7 @@ export const setVoucher = createAction(
   props<{ voucher: Voucher }>()
 );
 
+export const resetCart = createAction(
+  '[Cart] Reset Cart'
+);
+

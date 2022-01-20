@@ -14,7 +14,8 @@ import {
   removeSpecialDeal,
   decreaseMerchandise,
   setPaymentType,
-  setVoucher
+  setVoucher,
+  resetCart
 } from '@/store/cart/cart.actions';
 import { createReducer, on } from '@ngrx/store';
 
@@ -204,6 +205,13 @@ export const reducer = createReducer(
     return {
       ...state,
       voucher
+    };
+  }),
+
+  on(resetCart, (state: State) => {
+    return {
+      ...state,
+      ...initialState
     };
   })
 );
