@@ -68,7 +68,7 @@
             <span>{{ticket.location}}</span>
           </p>
 
-          <h3>@YourBrainEatsYou</h3>
+          <h3 *ngIf="(user$ |async) as user">@{{user.username}}</h3>
         </div>
         <div class="ticket-number">
           <span class="ticket-number__inner">#1072022</span>
