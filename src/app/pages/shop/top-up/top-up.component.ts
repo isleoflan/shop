@@ -34,7 +34,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
     this.topUpForm.valueChanges.pipe(
       takeUntil(this.destroyed$),
       filter(() => this.topUpForm.valid),
-      debounceTime(175)
+      debounceTime(250)
     ).subscribe((values: CartTopUp) => {
       this.cartFacadeService.setTopUp({
         id: values.id,
