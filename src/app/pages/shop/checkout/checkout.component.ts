@@ -1,7 +1,9 @@
 import { AbstractShopApiService } from '@/api/abstract-shop-api.service';
+import { User, PurchaseDto } from '@/interfaces/dto/purchase-dto';
 import { CartFacadeService } from '@/store/cart/cart-facade.service';
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { first, combineLatestWith, Observable } from 'rxjs';
 
 @Component({
@@ -16,7 +18,8 @@ export class CheckoutComponent {
 
   constructor(
     private shopApiService: AbstractShopApiService,
-    private cartFacadeService: CartFacadeService
+    private cartFacadeService: CartFacadeService,
+    private router: Router
   ) {
   }
 
@@ -27,25 +30,24 @@ export class CheckoutComponent {
   onCheckout(): void {
     if (this.billingAddressForm.valid) {
       this.cartFacadeService.paymentType$.pipe(
-        combineLatestWith([this.cartFacadeService.orderItems$, this.cartFacadeService.voucher$]),
+        combineLatestWith(this.cartFacadeService.orderItems$, this.cartFacadeService.voucher$),
         first()
-      ).subscribe(([paymentType, cart]) => {
+      ).subscribe(([paymentType, cart, { voucher }]) => {
 
-        console.log(paymentType, cart);
-
-        /*
         const user: User = this.billingAddressForm.value as User;
         const purchaseDto: PurchaseDto = {
           user,
           paymentType,
-         // cart,
-         // voucher,
+          cart,
+          voucher
         };
-        this.shopApiService.postOrder(purchaseDto).pipe(first()).subscribe((response) => {
-          console.log(response);
+        this.shopApiService.postOrder(purchaseDto).pipe(first()).subscribe((payload) => {
+          if (payload.data) {
+            void this.router.navigate(['/redirect', { externalUrl: payload.data.redirect }]).then(() => {
+              this.cartFacadeService.resetCart();
+            });
+          }
         });
-
-         */
       });
     }
   }

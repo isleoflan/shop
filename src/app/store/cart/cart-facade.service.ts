@@ -91,5 +91,9 @@ export class CartFacadeService {
     this.store.dispatch({ type: CartStoreActions.setPaymentType.type, paymentType });
   }
 
+  resetCart(): void {
+    this.store.dispatch({ type: CartStoreActions.resetCart.type });
+  }
+
 
 }

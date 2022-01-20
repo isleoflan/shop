@@ -7,6 +7,14 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     component: CheckoutComponent
+  },
+  {
+    path: 'success',
+    loadChildren: () => import('./success/success.module').then((m) => m.SuccessModule)
+  },
+  {
+    path: 'cancel',
+    loadChildren: () => import('./cancel/cancel.module').then((m) => m.CancelModule)
   }
 ];
 
