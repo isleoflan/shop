@@ -1,3 +1,19 @@
+.radio-button {
+  position: relative;
+
+  input:checked {
+    ~ .info {
+      color: #ffffff;
+    }
+  }
+}
+
 .radio-button-value {
   text-align: center;
+}
+
+.info {
+  position: absolute;
+  right: 0.5em;
+  bottom: 0.5em;
 }
