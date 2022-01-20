@@ -3,6 +3,7 @@ import { KeyRenewDto } from '@/interfaces/dto/key-renew-dto';
 import { LoginRequestDto } from '@/interfaces/dto/login-request-dto';
 import { Payload } from '@/interfaces/payload';
 import { LoginRequestPayload } from '@/interfaces/payload/login-request-payload';
+import { UserPayload } from '@/interfaces/payload/user-payload';
 import { TokenCollection } from '@/interfaces/token-collection';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -38,5 +39,9 @@ export class AuthApiService implements AbstractAuthApiService {
       this.ssoUrl + '/key/renew',
       { ...keyRenewDto }
     );
+  }
+
+  getUser(): Observable<Payload<UserPayload>> {
+    return this.http.get<Payload<UserPayload>>(this.ssoUrl + '/user/info');
   }
 }

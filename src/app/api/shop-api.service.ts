@@ -45,4 +45,8 @@ export class ShopApiService implements AbstractShopApiService {
     return this.http.get<Payload<VoucherPayload>>('/voucher', { params: { voucher } }).pipe(first());
   }
 
+  cancelOrder(orderId: string): Observable<Payload<null>> {
+    return this.http.delete<Payload<null>>('/order/cancel', { params: { orderId } }).pipe(first());
+  }
+
 }

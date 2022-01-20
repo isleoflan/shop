@@ -17,8 +17,8 @@
 </div>
 
 <div *ngIf="(menus$ | async) as menus" class="menus items">
-  <ng-container *ngIf="(isSpecialDealEligible$ | async); else menuList">
-    <div *ngIf="(specialDeal$ | async) as specialDeal" class="item">
+  <ng-container *ngIf="(specialDeal$ | async) as specialDeal">
+    <div *ngIf="(isSpecialDealEligible$ | async); else menuList" class="item">
       <div class="image">
         <span class="material-icons-outlined">brunch_dining</span>
       </div>
