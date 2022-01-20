@@ -13,11 +13,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { httpInterceptorProviders } from './interceptors';
 import { RedirectComponent } from './pages/redirect/redirect.component';
+import { SoldOutComponent } from './pages/sold-out/sold-out.component';
 
 registerLocaleData(localCH);
 
 @NgModule({
-  declarations: [AppComponent, RedirectComponent],
+  declarations: [AppComponent, RedirectComponent, SoldOutComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, AppStoreModule],
   providers: [
     httpInterceptorProviders,

@@ -1,5 +1,6 @@
 import { AbstractShopApiService } from '@/api/abstract-shop-api.service';
 import { User, PurchaseDto } from '@/interfaces/dto/purchase-dto';
+import { AvailabilityFacadeService } from '@/store/availability/availability-facade.service';
 import { CartFacadeService } from '@/store/cart/cart-facade.service';
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
@@ -19,6 +20,7 @@ export class CheckoutComponent {
   constructor(
     private shopApiService: AbstractShopApiService,
     private cartFacadeService: CartFacadeService,
+    private availabilityFacadeService: AvailabilityFacadeService,
     private router: Router
   ) {
   }
@@ -33,7 +35,6 @@ export class CheckoutComponent {
         combineLatestWith(this.cartFacadeService.orderItems$, this.cartFacadeService.voucher$),
         first()
       ).subscribe(([paymentType, cart, { voucher }]) => {
-
         const user: User = this.billingAddressForm.value as User;
         const purchaseDto: PurchaseDto = {
           user,
@@ -41,6 +42,7 @@ export class CheckoutComponent {
           cart,
           voucher
         };
+
         this.shopApiService.postOrder(purchaseDto).pipe(first()).subscribe((payload) => {
           if (payload.data) {
             void this.router.navigate(['/redirect', { externalUrl: payload.data.redirect }]).then(() => {
