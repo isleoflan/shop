@@ -1,7 +1,8 @@
 import { Gender } from '@/enums/gender';
+import { UserFacadeService } from '@/store/user/user-facade.service';
 import { Component, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Subject } from 'rxjs';
+import { Subject, first, filter } from 'rxjs';
 
 @Component({
   selector: 'app-billing-address',
@@ -29,7 +30,30 @@ export class BillingAddressComponent implements OnInit, OnDestroy {
 
   private destroyed$: Subject<boolean> = new Subject<boolean>();
 
+  constructor(
+    private userFacadeService: UserFacadeService
+  ) {
+  }
+
   ngOnInit(): void {
+    this.userFacadeService.user$.pipe(
+      filter((data) => data !== null),
+      first()
+    ).subscribe((user) => {
+      if (user) {
+        this.billingAddressForm.setValue({
+          gender: user.gender,
+          forename: user.forename,
+          lastname: user.lastname,
+          email: user.email,
+          address: user.address,
+          zipCode: user.zipCode.toString(),
+          city: user.city,
+          vegetarian: false
+        });
+      }
+    });
+
     this.form.emit(this.billingAddressForm);
 
     this.billingAddressForm.valueChanges.subscribe(() => {
