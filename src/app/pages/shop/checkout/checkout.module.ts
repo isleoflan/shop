@@ -1,4 +1,5 @@
 import { HeaderModule } from '@/components/header/header.module';
+import { DirectivesModule } from '@/directives/directives.module';
 import { CheckoutComponent } from '@/pages/shop/checkout/checkout.component';
 import { PipesModule } from '@/pipes/pipes.module';
 import { CartStoreModule } from '@/store/cart/cart-store.module';
@@ -29,7 +30,8 @@ import { VoucherComponent } from './voucher/voucher.component';
     HeaderModule,
     ReactiveFormsModule,
     PipesModule,
-    CartStoreModule
+    CartStoreModule,
+    DirectivesModule
   ]
 })
 export class CheckoutModule {
