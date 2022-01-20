@@ -138,6 +138,8 @@ export const selectPaymentFee: MemoizedSelector<AppState, number> = createSelect
         break;
     }
 
+    paymentFee = Math.ceil(paymentFee / 50) * 50;
+
     return paymentFee;
   }
 );
