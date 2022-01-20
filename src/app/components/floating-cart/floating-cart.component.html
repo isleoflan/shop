@@ -1,6 +1,8 @@
 <app-summary *ngIf="(isSummaryActive$ | async)"></app-summary>
 
-<div (click)="onButtonClick()" [ngClass]="{'has-total': (total$ | async)}" class="floating-cart-button">
+<div (click)="onButtonClick()" [ngClass]="{'has-total': (total$ | async), 'added': (addedClass$ |async)}"
+     class="floating-cart-button">
+  <span class="ripple"></span>
   <div *ngIf="(total$ | async) as total" class="price">{{ total | intCurrency }}</div>
   <div class="icon">
     <span class="material-icons-outlined">shopping_cart</span>

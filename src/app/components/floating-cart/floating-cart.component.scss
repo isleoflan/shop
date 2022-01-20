@@ -40,6 +40,7 @@ app-summary {
 .floating-cart-button {
   display: flex;
 
+  overflow: hidden;
   align-items: center;
   flex-direction: row;
   padding: 12px;
@@ -65,8 +66,39 @@ app-summary {
       transition-delay: 0s;
     }
   }
+
+  .ripple {
+    position: absolute;
+    overflow: hidden;
+    border-radius: 48px;
+    inset: 0;
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      content: '';
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background-color: $color-primary-accent;
+      aspect-ratio: 1 / 1;
+    }
+  }
+
+  &.added {
+    color: white;
+
+    .ripple {
+      &::after {
+        width: 110%;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
 }
 
 .icon {
+  position: relative;
   padding: 6px;
 }
