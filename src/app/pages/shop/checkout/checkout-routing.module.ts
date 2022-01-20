@@ -1,3 +1,4 @@
+import { NoEmptyCartGuard } from '@/guards/no-empty-cart.guard';
 import { CheckoutComponent } from '@/pages/shop/checkout/checkout.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -6,7 +7,13 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: CheckoutComponent
+    component: CheckoutComponent,
+    canActivate: [
+      NoEmptyCartGuard
+    ],
+    canLoad: [
+      NoEmptyCartGuard
+    ]
   },
   {
     path: 'success',
