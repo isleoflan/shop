@@ -15,10 +15,16 @@
 }
 
 .days {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   gap: 48px;
-  grid-template-columns: repeat(4, 1fr);
+  @include for-tablet-landscape-up {
+    display: grid;
+    width: 100%;
+    gap: 48px;
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .day {
@@ -28,7 +34,9 @@
 }
 
 .special-deal {
-  grid-area: 1 / 4;
+  @include for-tablet-landscape-up {
+    grid-area: 1 / 4;
+  }
 }
 
 .day-title {
@@ -36,9 +44,13 @@
 }
 
 .meals {
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 72px;
+  @include for-tablet-landscape-up {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+  }
 }
 
 .meal {

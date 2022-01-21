@@ -14,14 +14,17 @@
   flex-direction: column;
 }
 
-.title {
-
-}
 
 .merchandise {
-  display: grid;
-  gap: 72px 48px;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-direction: column;
+  gap: 72px;
+
+  @include for-tablet-landscape-up {
+    display: grid;
+    gap: 72px 48px;
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .item {
