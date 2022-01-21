@@ -1,3 +1,4 @@
+import { NoPreviousOrderGuard } from '@/guards/no-previous-order.guard';
 import { NotSoldOutGuard } from '@/guards/not-sold-out.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -9,10 +10,12 @@ const routes: Routes = [
     pathMatch: 'full',
     component: ShopComponent,
     canActivate: [
-      NotSoldOutGuard
+      NotSoldOutGuard,
+      NoPreviousOrderGuard
     ],
     canLoad: [
-      NotSoldOutGuard
+      NotSoldOutGuard,
+      NoPreviousOrderGuard
     ]
   },
   {

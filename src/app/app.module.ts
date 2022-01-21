@@ -12,13 +12,14 @@ import { AuthApiService } from './api/auth-api.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { httpInterceptorProviders } from './interceptors';
+import { HasOrderComponent } from './pages/has-order/has-order.component';
 import { RedirectComponent } from './pages/redirect/redirect.component';
 import { SoldOutComponent } from './pages/sold-out/sold-out.component';
 
 registerLocaleData(localCH);
 
 @NgModule({
-  declarations: [AppComponent, RedirectComponent, SoldOutComponent],
+  declarations: [AppComponent, RedirectComponent, SoldOutComponent, HasOrderComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, AppStoreModule],
   providers: [
     httpInterceptorProviders,
