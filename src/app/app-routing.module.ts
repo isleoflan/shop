@@ -27,6 +27,14 @@ const routes: Routes = [
     children: []
   },
   {
+    path: 'sold-out',
+    loadChildren: () => import('./pages/sold-out/sold-out.module').then((m) => m.SoldOutModule)
+  },
+  {
+    path: 'has-order',
+    loadChildren: () => import('./pages/has-order/has-order.module').then((m) => m.HasOrderModule)
+  },
+  {
     path: 'redirect',
     component: RedirectComponent,
     canActivate: [externalUrlProvider]

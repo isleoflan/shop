@@ -11,4 +11,5 @@ export interface UserPayload {
   birthDate: Date;
   email: string;
   phone: string;
+  hasOrder: boolean;
 }

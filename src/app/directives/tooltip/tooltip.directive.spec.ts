@@ -51,7 +51,6 @@ describe('TooltipDirective', () => {
     const mouseEnterEvent = new Event('mouseenter');
     inputEl[0].nativeElement.dispatchEvent(mouseEnterEvent);
 
-    console.log(inputEl);
 
     fixture.detectChanges();
 

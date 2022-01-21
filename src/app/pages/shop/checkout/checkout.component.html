@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <div class="container">
-  <h1 class="h2 container-title">Checkout</h1>
+  <h1 class="h2 container-title">Schon fast fertig...</h1>
   <section class="main-content">
     <div class="user-information">
       <app-billing-address (form)="setBillingAddressForm($event)" class="card"></app-billing-address>
@@ -12,7 +12,7 @@
       <app-voucher *ngIf="(voucherDiscount$ |async) === 0" class="card"></app-voucher>
       <app-total class="card"></app-total>
 
-      <button (click)="onCheckout()" [disabled]="!billingAddressForm.valid" class="button button--primary">Checkout
+      <button (click)="onCheckout()" [disabled]="!billingAddressForm.valid" class="button button--primary">Bestellen
       </button>
     </div>
   </section>

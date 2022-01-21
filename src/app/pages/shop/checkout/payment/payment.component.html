@@ -1,4 +1,4 @@
-<h3>Payment</h3>
+<h3>Bezahlung</h3>
 <form [formGroup]="paymentForm" class="form-radio form-radio--multy">
   <label class="radio-button">
     <input formControlName="paymentType" name="paymentType" type="radio" value="{{PREPAYMENT}}">
@@ -14,7 +14,7 @@
                     ></path>
                   </svg>
                 </span>
-                Prepayment / TWINT
+                Vorauszahlung / TWINT
               </span>
   </label>
   <ng-container *ngIf="(restrictedPaymentTypes$ | async)">
@@ -46,7 +46,7 @@
                     ></path>
                   </svg>
                 </span>
-                Credit Card
+                Kreditkarte
               </span>
     </label>
     <label class="radio-button">

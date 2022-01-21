@@ -1,10 +1,12 @@
 import { AbstractShopApiService } from '@/api/abstract-shop-api.service';
 import { User, PurchaseDto } from '@/interfaces/dto/purchase-dto';
+import { AvailabilityFacadeService } from '@/store/availability/availability-facade.service';
 import { CartFacadeService } from '@/store/cart/cart-facade.service';
+import { UserFacadeService } from '@/store/user/user-facade.service';
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { first, combineLatestWith, Observable } from 'rxjs';
+import { first, combineLatestWith, Observable, filter } from 'rxjs';
 
 @Component({
   selector: 'app-checkout',
@@ -19,6 +21,8 @@ export class CheckoutComponent {
   constructor(
     private shopApiService: AbstractShopApiService,
     private cartFacadeService: CartFacadeService,
+    private availabilityFacadeService: AvailabilityFacadeService,
+    private userFacadeService: UserFacadeService,
     private router: Router
   ) {
   }
@@ -33,18 +37,25 @@ export class CheckoutComponent {
         combineLatestWith(this.cartFacadeService.orderItems$, this.cartFacadeService.voucher$),
         first()
       ).subscribe(([paymentType, cart, { voucher }]) => {
+        this.userFacadeService.user$.pipe(
+          filter((userPayload) => userPayload !== null)
+        ).subscribe((userPayload) => {
+          if (userPayload && userPayload.username) {
+            const user: User = this.billingAddressForm.value as User;
+            const purchaseDto: PurchaseDto = {
+              username: userPayload.username,
+              user,
+              paymentType,
+              cart,
+              voucher
+            };
 
-        const user: User = this.billingAddressForm.value as User;
-        const purchaseDto: PurchaseDto = {
-          user,
-          paymentType,
-          cart,
-          voucher
-        };
-        this.shopApiService.postOrder(purchaseDto).pipe(first()).subscribe((payload) => {
-          if (payload.data) {
-            void this.router.navigate(['/redirect', { externalUrl: payload.data.redirect }]).then(() => {
-              this.cartFacadeService.resetCart();
+            this.shopApiService.postOrder(purchaseDto).pipe(first()).subscribe((payload) => {
+              if (payload.data) {
+                void this.router.navigate(['/redirect', { externalUrl: payload.data.redirect }]).then(() => {
+                  this.cartFacadeService.resetCart();
+                });
+              }
             });
           }
         });

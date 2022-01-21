@@ -1,56 +1,56 @@
-<h2 class="h3">Billing address</h2>
+<h2 class="h3">Adresse</h2>
 <form [formGroup]="billingAddressForm" class="form">
   <div class="form-control">
-    <label>Gender</label>
+    <label>Geschlecht</label>
     <div class="form-radio">
       <label class="radio-button">
         <input formControlName="gender" name="gender" type="radio" value="{{MALE}}">
-        <span class="radio-button-value">{{MALE | titlecase}}</span>
+        <span class="radio-button-value">Männlich</span>
       </label>
       <label class="radio-button">
         <input formControlName="gender" name="gender" type="radio" value="{{FEMALE}}">
-        <span class="radio-button-value">{{FEMALE | titlecase}}</span>
+        <span class="radio-button-value">Weiblich</span>
       </label>
       <label class="radio-button">
         <input formControlName="gender" name="gender" type="radio" value="{{OTHER}}">
-        <span class="radio-button-value">{{OTHER | titlecase}}</span>
+        <span class="radio-button-value">Diverse</span>
       </label>
     </div>
   </div>
   <div class="form-group">
     <div class="form-control">
-      <label for="forename">Forename</label>
+      <label for="forename">Vorname</label>
       <input formControlName="forename" id="forename" type="text">
     </div>
     <div class="form-control">
-      <label for="lastname">Lastname</label>
+      <label for="lastname">Nachname</label>
       <input formControlName="lastname" id="lastname" type="text">
     </div>
   </div>
 
   <div class="form-control">
-    <label for="email">Mail</label>
+    <label for="email">E-Mail</label>
     <input formControlName="email" id="email" type="text">
   </div>
 
   <div class="form-control">
-    <label for="address">Street & Nr</label>
+    <label for="address">Strasse & Nr</label>
     <input formControlName="address" id="address" type="text">
   </div>
   <div class="form-group city">
     <div class="form-control">
-      <label for="zipCode">ZIP</label>
+      <label for="zipCode">PLZ</label>
       <input formControlName="zipCode" id="zipCode" type="number">
     </div>
     <div class="form-control">
-      <label for="city">City</label>
+      <label for="city">Ort</label>
       <input formControlName="city" id="city" type="text">
     </div>
   </div>
   <div class="form-control">
     <label class="checkbox" for="vegetarian">
       <input formControlName="vegetarian" id="vegetarian" type="checkbox">
-      <span class="checkbox-text">I am a vegetarian</span>
+      <span class="checkbox-text">I ch ernähre mich vegetarisch</span>
     </label>
   </div>
 </form>

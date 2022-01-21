@@ -2,6 +2,7 @@ import { Gender } from '@/enums/gender';
 import { PaymentType } from '@/enums/payment-type';
 
 export interface PurchaseDto {
+  username: string;
   user: User;
   cart: PurchaseItem[];
   paymentType: PaymentType;

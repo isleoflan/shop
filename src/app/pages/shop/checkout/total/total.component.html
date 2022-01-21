@@ -13,7 +13,7 @@
     </ng-container>
 
     <tr *ngIf="(paymentFee$ |async) as paymentFee">
-      <td>Payment fee:</td>
+      <td>Zahlungsart Aufschlag:</td>
       <td class="price">{{ paymentFee | intCurrency }}</td>
     </tr>
   </tbody>
