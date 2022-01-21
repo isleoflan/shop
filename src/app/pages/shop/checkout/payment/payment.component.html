@@ -18,7 +18,6 @@
               </span>
   </label>
   <ng-container *ngIf="(restrictedPaymentTypes$ | async)">
-    <!--
     <label class="radio-button">
       <input formControlName="paymentType" name="paymentType" type="radio" value="{{PAYPAL}}">
       <span class="radio-button-value">
@@ -34,7 +33,6 @@
                 PayPal
               </span>
     </label>
-    -->
     <label class="radio-button">
       <input formControlName="paymentType" name="paymentType" type="radio" value="{{STRIPE}}">
       <span class="radio-button-value">
