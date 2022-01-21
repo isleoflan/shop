@@ -1,5 +1,14 @@
 @use "abstracts" as *;
 
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .button {
   font-size: 2rem;
   display: flex;
@@ -55,6 +64,19 @@
 
     .icon {
       padding: 0 24px;
+    }
+  }
+
+  &--loading {
+    &:before {
+      position: relative;
+      width: 1em;
+      height: 1em;
+      margin-right: 1em;
+      content: "";
+      animation: rotate 1s infinite linear;
+      background-image: url("/assets/spinner-solid.svg");
+      background-size: cover;
     }
   }
 }
