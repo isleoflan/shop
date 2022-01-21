@@ -12,8 +12,16 @@
       <app-voucher *ngIf="(voucherDiscount$ |async) === 0" class="card"></app-voucher>
       <app-total class="card"></app-total>
 
-      <button (click)="onCheckout()" [disabled]="!billingAddressForm.valid" class="button button--primary">Bestellen
+      <button
+        (click)="onCheckout()"
+        [disabled]="!billingAddressForm.valid || (isPosting$ | async)"
+        [ngClass]="{'button--loading': (isPosting$ | async)}"
+        class="button button--primary button--loading"
+      >
+        Bestellen
       </button>
     </div>
   </section>
 </div>
+
+<div [ngClass]="{'overlay--active': (isPosting$ | async)}" class="overlay"></div>
