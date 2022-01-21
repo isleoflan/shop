@@ -26,7 +26,10 @@ form {
 }
 
 .card {
-  width: 30%;
+  width: 100%;
+  @include for-tablet-landscape-up {
+    width: 30%;
+  }
 }
 
 input {
