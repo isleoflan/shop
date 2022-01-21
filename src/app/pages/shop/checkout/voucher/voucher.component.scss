@@ -3,8 +3,11 @@
 :host {
   display: flex;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   gap: 2em;
+  @include for-tablet-landscape-up {
+    flex-direction: row;
+  }
 }
 
 h2 {
@@ -13,9 +16,12 @@ h2 {
 
 form {
   display: flex;
-
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   gap: 2em;
+
+  @include for-tablet-landscape-up {
+    flex-direction: row;
+  }
 }

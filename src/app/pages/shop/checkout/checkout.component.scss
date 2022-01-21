@@ -1,3 +1,5 @@
+@use "abstracts" as *;
+
 :host {
   display: flex;
   flex-direction: row;
@@ -7,9 +9,15 @@
 }
 
 .main-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 48px;
+
+  @include for-tablet-landscape-up {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
 }
 
 .user-information,
