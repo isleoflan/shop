@@ -26,3 +26,18 @@
   flex-direction: column;
   gap: 48px;
 }
+
+.overlay {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color-black, 0.26);
+
+  &--active {
+    display: block;
+  }
+}
