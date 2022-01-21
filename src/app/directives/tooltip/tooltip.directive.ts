@@ -16,7 +16,6 @@ export class TooltipDirective {
 
   @HostListener('mouseenter')
   show(): void {
-    console.log('here');
     this.viewContainerRef.clear();
     const componentRef = this.viewContainerRef.createComponent<TooltipComponent>(TooltipComponent);
     componentRef.instance.text = this.text;

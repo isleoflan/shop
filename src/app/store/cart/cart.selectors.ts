@@ -150,7 +150,6 @@ export const selectTotalWithPaymentFee: MemoizedSelector<AppState, number> = cre
   selectPaymentFee,
   selectVoucherTotal,
   (state, total, paymentFee, voucherTotal) => {
-    console.log(total, paymentFee, voucherTotal);
     return (total + paymentFee + voucherTotal);
   }
 );
