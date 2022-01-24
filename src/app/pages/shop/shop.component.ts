@@ -13,6 +13,6 @@ export class ShopComponent {
   constructor(
     private cartFacadeService: CartFacadeService
   ) {
-  }
 
+  }
 }

@@ -1,11 +1,14 @@
 import { AbstractShopApiService } from '@/api/abstract-shop-api.service';
 import { ShopApiService } from '@/api/shop-api.service';
+import { errorHandlerFactory } from '@/services/sentry-error-handler.service';
 import { AppStoreModule } from '@/store/app-store.module';
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import localCH from '@angular/common/locales/de-CH';
-import { NgModule, LOCALE_ID, DEFAULT_CURRENCY_CODE } from '@angular/core';
+import { NgModule, LOCALE_ID, DEFAULT_CURRENCY_CODE, ErrorHandler, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import * as Sentry from '@sentry/angular';
 import { AbstractAuthApiService } from './api/abstract-auth-api.service';
 import { AuthApiService } from './api/auth-api.service';
 
@@ -22,6 +25,21 @@ registerLocaleData(localCH);
   declarations: [AppComponent, RedirectComponent, SoldOutComponent, HasOrderComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, AppStoreModule],
   providers: [
+    {
+      provide: ErrorHandler, useFactory: errorHandlerFactory
+    },
+    {
+      provide: Sentry.TraceService,
+      deps: [Router]
+    },
+    {
+      provide: APP_INITIALIZER,
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      useFactory: () => () => {
+      },
+      deps: [Sentry.TraceService],
+      multi: true
+    },
     httpInterceptorProviders,
     { provide: AbstractAuthApiService, useClass: AuthApiService },
     { provide: AbstractShopApiService, useClass: ShopApiService },
