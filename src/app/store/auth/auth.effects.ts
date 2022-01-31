@@ -21,6 +21,7 @@ export class AuthEffects {
     map(({ tokenCollection }) => {
       const { accessToken, refreshToken, expiration } = tokenCollection;
 
+
       window.localStorage.setItem('iol-access-token', accessToken);
       window.localStorage.setItem('iol-refresh-token', refreshToken);
       window.localStorage.setItem('iol-expiration', expiration);
