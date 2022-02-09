@@ -1,8 +1,9 @@
 import { PaymentType } from '@/enums/payment-type';
+import { CartTopUp } from '@/interfaces/cart/cart-top-up';
 import { CartFacadeService } from '@/store/cart/cart-facade.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Subject, takeUntil, first, Observable, combineLatestWith, debounceTime } from 'rxjs';
+import { Subject, takeUntil, first, Observable, combineLatestWith, debounceTime, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-payment',
@@ -18,6 +19,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   restrictedPaymentTypes$: Subject<boolean> = new Subject<boolean>();
 
+  allowStripe$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+
   paymentForm: FormGroup = new FormGroup({
     paymentType: new FormControl('', [Validators.required])
   });
@@ -26,6 +29,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
   private totalWithPaymentFee$: Observable<number> = this.cartFacadeService.totalWithPaymentFee$;
   private paymentFee$: Observable<number> = this.cartFacadeService.paymentFee$;
   private paymentType$: Observable<PaymentType> = this.cartFacadeService.paymentType$;
+
+  private topUp$: Observable<CartTopUp | null> = this.cartFacadeService.topUp$;
 
 
   constructor(
@@ -57,6 +62,23 @@ export class PaymentComponent implements OnInit, OnDestroy {
         this.restrictedPaymentTypes$.next(false);
       } else if (total !== fee) {
         this.restrictedPaymentTypes$.next(true);
+      }
+    });
+
+    this.paymentType$.pipe(
+      takeUntil(this.destroyed$),
+      combineLatestWith(this.topUp$)
+    ).subscribe(([paymentType, topUp]) => {
+      // STRIPE
+      if (topUp && topUp.amount > 0) {
+        // disable Stripe
+        if (paymentType === this.STRIPE) {
+          // set other payment Type
+          this.paymentForm.controls['paymentType'].setValue(this.PREPAYMENT);
+        }
+        this.allowStripe$.next(false);
+      } else {
+        this.allowStripe$.next(true);
       }
     });
   }
