@@ -33,8 +33,7 @@
                 PayPal
               </span>
     </label>
-    <!--
-    <label class="radio-button">
+    <label *ngIf="(allowStripe$ | async)" class="radio-button">
       <input formControlName="paymentType" name="paymentType" type="radio" value="{{STRIPE}}">
       <span class="radio-button-value">
                 <span class="icon">
@@ -50,7 +49,6 @@
                 Kreditkarte
               </span>
     </label>
-    -->
     <label class="radio-button">
       <input formControlName="paymentType" name="paymentType" type="radio" value="{{CRYPTO}}">
       <span class="radio-button-value">
