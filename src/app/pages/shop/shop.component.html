@@ -1,7 +1,7 @@
 <app-ticket></app-ticket>
 
 <ng-container *ngIf="(hasTicket$ | async)">
-  <app-catering id="catering"></app-catering>
+  <app-catering *ngIf="false" id="catering"></app-catering>
   <app-top-up id="top-up"></app-top-up>
   <app-merchandise id="merchandise"></app-merchandise>
   <div id="checkout">
